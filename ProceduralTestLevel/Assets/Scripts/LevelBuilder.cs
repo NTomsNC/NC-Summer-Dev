@@ -34,7 +34,7 @@ public class LevelBuilder : MonoBehaviour
         WaitForSeconds startup = new WaitForSeconds(1);
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
 
-        yield return startup;
+        //yield return startup;
 
         // Place start room
         PlaceStartRoom();
@@ -192,7 +192,9 @@ public class LevelBuilder : MonoBehaviour
         room.transform.rotation = Quaternion.identity;
 
         //Rotate room to match previous doorway
-        float deltaAngle = Mathf.DeltaAngle(roomDoorway.transform.eulerAngles.y, targetDoorway.transform.eulerAngles.y);
+        Vector3 roomDoorEuler = roomDoorway.transform.eulerAngles;
+        Vector3 targetDoorEuler = targetDoorway.transform.eulerAngles;
+        float deltaAngle = Mathf.DeltaAngle(roomDoorEuler.y, targetDoorEuler.y);
         Quaternion newRotation = Quaternion.AngleAxis(deltaAngle, Vector3.up);
         room.transform.rotation = newRotation * Quaternion.Euler(0, 180f, 0);
 
@@ -208,12 +210,12 @@ public class LevelBuilder : MonoBehaviour
 
         Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, room.transform.rotation, roomLayerMask);
 
-        if(colliders.Length > 0)
+        if (colliders.Length > 0)
         {
             //ignore collisions with current room
-            foreach(Collider c in colliders)
+            foreach (Collider c in colliders)
             {
-                if(c.transform.parent.gameObject.Equals(room.gameObject))
+                if (c.transform.parent.gameObject.Equals(room.gameObject))
                 {
                     continue;
                 }

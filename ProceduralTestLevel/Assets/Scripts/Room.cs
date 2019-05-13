@@ -9,4 +9,9 @@ public class Room : MonoBehaviour
     {
         get { return meshCollider.bounds; }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(RoomBounds.center, RoomBounds.size / 2) ;
+    }
 }
