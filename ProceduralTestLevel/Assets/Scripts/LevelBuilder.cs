@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class LevelBuilder : MonoBehaviour
 {
+    [Space(5)]
     public Room startRoomPrefab, endRoomPrefab;
+
+    [Space(10)]
     public List<Room> roomPrefabs = new List<Room>();
+
+    [Space(10)]
     public Vector2 iterationRange = new Vector2(3, 10);
 
     StartRoom startRoom;
     EndRoom endRoom;
+
     List<Room> rooms = new List<Room>();
+
     List<Doorway> availableDoorways = new List<Doorway>();
 
     public LayerMask roomLayerMask;
