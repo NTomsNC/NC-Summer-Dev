@@ -247,7 +247,7 @@ MonoBehaviour:
   roomPrefabs:
   - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
   - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  iterationRange: {x: 3, y: 10}
+  iterationRange: {x: 99, y: 100}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256

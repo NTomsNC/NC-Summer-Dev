@@ -31,10 +31,10 @@ public class LevelBuilder : MonoBehaviour
 
     IEnumerator GenerateLevel()
     {
-        WaitForSeconds startup = new WaitForSeconds(1);
+        WaitForSeconds startup = new WaitForSeconds(0.5f);
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
 
-        //yield return startup;
+        yield return startup;
 
         // Place start room
         PlaceStartRoom();
@@ -229,11 +229,7 @@ public class LevelBuilder : MonoBehaviour
 
         foreach(Room r in rooms)
         {
-            if((room.RoomBounds.Intersects(r.meshCollider.GetComponent<MeshCollider>().bounds) && !r.transform.gameObject.Equals(room.gameObject)) || r.transform.gameObject.Equals(room.gameObject))
-            {
-                continue;
-            }
-            else
+            if(room.RoomBounds.Intersects(r.meshCollider.GetComponent<MeshCollider>().bounds) && !r.transform.gameObject.Equals(room.gameObject))
             {
                 Debug.LogError("Overlap Detected");
                 return true;

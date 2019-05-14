@@ -12,6 +12,6 @@ public class Room : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(RoomBounds.center, RoomBounds.size / 2) ;
+        Gizmos.DrawWireCube(RoomBounds.center, RoomBounds.size) ;
     }
 }
