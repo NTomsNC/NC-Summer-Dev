@@ -205,25 +205,38 @@ public class LevelBuilder : MonoBehaviour
 
     bool CheckRoomOverlap(Room room)
     {
-        Bounds bounds = room.RoomBounds;
-        bounds.Expand(-0.1f);
+        //Bounds bounds = room.RoomBounds;
+        //bounds.Expand(-0.1f);
 
-        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, room.transform.rotation, roomLayerMask);
+        //Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, room.transform.rotation, roomLayerMask);
 
-        if (colliders.Length > 0)
+        //if (colliders.Length > 0)
+        //{
+        //    //ignore collisions with current room
+        //    foreach (Collider c in colliders)
+        //    {
+        //        if (c.transform.parent.gameObject.Equals(room.gameObject))
+        //        {
+        //            continue;
+        //        }
+        //        else
+        //        {
+        //            Debug.LogError("Overlap Detected");
+        //            return true;
+        //        }
+        //    }
+        //}
+
+        foreach(Room r in rooms)
         {
-            //ignore collisions with current room
-            foreach (Collider c in colliders)
+            if((room.RoomBounds.Intersects(r.meshCollider.GetComponent<MeshCollider>().bounds) && !r.transform.gameObject.Equals(room.gameObject)) || r.transform.gameObject.Equals(room.gameObject))
             {
-                if (c.transform.parent.gameObject.Equals(room.gameObject))
-                {
-                    continue;
-                }
-                else
-                {
-                    Debug.LogError("Overlap Detected");
-                    return true;
-                }
+                continue;
+            }
+            else
+            {
+                Debug.LogError("Overlap Detected");
+                return true;
             }
         }
 
