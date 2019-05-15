@@ -247,7 +247,8 @@ MonoBehaviour:
   roomPrefabs:
   - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
   - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  iterationRange: {x: 15, y: 30}
+  - {fileID: 996133676259734903, guid: c08c10178940337489d8bcf397685cb5, type: 3}
+  iterationRange: {x: 50, y: 100}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -282,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
