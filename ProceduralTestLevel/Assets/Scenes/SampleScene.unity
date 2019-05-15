@@ -247,7 +247,7 @@ MonoBehaviour:
   roomPrefabs:
   - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
   - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  iterationRange: {x: 99, y: 100}
+  iterationRange: {x: 15, y: 30}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -501,6 +501,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
+        type: 3}
+      propertyPath: builder
+      value: 
+      objectReference: {fileID: 800036407}
     - target: {fileID: 4106058550495190525, guid: 9007ff8c247c12e4581916ead75a2737,
         type: 3}
       propertyPath: m_LocalPosition.x

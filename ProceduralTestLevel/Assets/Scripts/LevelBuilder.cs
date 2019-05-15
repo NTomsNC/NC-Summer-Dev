@@ -67,7 +67,7 @@ public class LevelBuilder : MonoBehaviour
 
         //Instantiate
         startRoom = Instantiate(startRoomPrefab) as StartRoom;
-        startRoom.transform.parent = this.transform;
+        startRoom.transform.parent = transform;
 
         //get doorways from current room and add to list
         AddDoorwaysToList(startRoom, ref availableDoorways);
@@ -75,11 +75,72 @@ public class LevelBuilder : MonoBehaviour
         //position room
         startRoom.transform.position = Vector3.zero;
         startRoom.transform.rotation = Quaternion.identity;
+        startRoom.RoomBounds.Expand(-0.1f);
     }
 
     void PlaceEndRoom()
     {
         Debug.Log("Place end room");
+
+        //Instantiate
+        endRoom = Instantiate(endRoomPrefab) as EndRoom;
+        endRoom.transform.parent = transform;
+
+        //Create doorway list to loop over
+        List<Doorway> allAvailableDoors = new List<Doorway>(availableDoorways);
+        List<Doorway> currentDoors = new List<Doorway>();
+
+        AddDoorwaysToList(endRoom, ref currentDoors);
+
+        //Get doorways and add to global list
+        AddDoorwaysToList(endRoom, ref availableDoorways);
+
+        bool roomPlaced = false;
+
+        //Try available doors
+        foreach (Doorway availableDoor in allAvailableDoors)
+        {
+            //try doors in current room
+            foreach (Doorway currentDoor in currentDoors)
+            {
+                //position room
+                Room eRoom = endRoom;
+                PositionAtDoorway(ref eRoom, currentDoor, availableDoor);
+
+                if (CheckRoomOverlap(endRoom))
+                {
+                    continue;
+                }
+
+                roomPlaced = true;
+
+                //Add room to list
+                rooms.Add(endRoom);
+
+                //remove occupied doorways
+                currentDoor.gameObject.SetActive(false);
+                availableDoorways.Remove(currentDoor);
+
+                availableDoor.gameObject.SetActive(false);
+                availableDoorways.Remove(availableDoor);
+
+                //exit loop if room is placed
+                break;
+            }
+
+            //Exit loop if room has been placed
+            if (roomPlaced)
+            {
+                break;
+            }
+        }
+
+        //Room couldnt be placed. Restart generator and try again
+        if (!roomPlaced)
+        {
+            Destroy(endRoom.gameObject);
+            ResetGenerator();
+        }
     }
 
     void PlaceRoom()
@@ -147,7 +208,7 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
-    void ResetGenerator()
+    public void ResetGenerator()
     {
         Debug.LogError("Reset generation");
 
@@ -205,31 +266,26 @@ public class LevelBuilder : MonoBehaviour
 
     bool CheckRoomOverlap(Room room)
     {
-        //Bounds bounds = room.RoomBounds;
-        //bounds.Expand(-0.1f);
+        Vector3 roomPos = room.gameObject.transform.position;
+        Vector3 pt1 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
+        Vector3 pt2 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
+        Vector3 pt3 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
+        Vector3 pt4 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
+        Vector3 pt5 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
+        Vector3 pt6 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
 
-        //Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, room.transform.rotation, roomLayerMask);
-
-        //if (colliders.Length > 0)
-        //{
-        //    //ignore collisions with current room
-        //    foreach (Collider c in colliders)
-        //    {
-        //        if (c.transform.parent.gameObject.Equals(room.gameObject))
-        //        {
-        //            continue;
-        //        }
-        //        else
-        //        {
-        //            Debug.LogError("Overlap Detected");
-        //            return true;
-        //        }
-        //    }
-        //}
-
-        foreach(Room r in rooms)
+        foreach (Room r in rooms)
         {
-            if(room.RoomBounds.Intersects(r.meshCollider.GetComponent<MeshCollider>().bounds) && !r.transform.gameObject.Equals(room.gameObject))
+            if (r.RoomBounds.Intersects(room.RoomBounds) || 
+                r.RoomBounds.Contains(roomPos)|| 
+                r.RoomBounds.Contains(room.RoomBounds.min) 
+                || r.RoomBounds.Contains(room.RoomBounds.max)
+                || r.RoomBounds.Contains(pt1)
+                || r.RoomBounds.Contains(pt2)
+                || r.RoomBounds.Contains(pt3)
+                || r.RoomBounds.Contains(pt4)
+                || r.RoomBounds.Contains(pt5)
+                || r.RoomBounds.Contains(pt6))
             {
                 Debug.LogError("Overlap Detected");
                 return true;
