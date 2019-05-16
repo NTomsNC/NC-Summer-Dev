@@ -14,6 +14,6 @@ public class Room : MonoBehaviour
     {
         Bounds bounds = new Bounds(RoomBounds.center, RoomBounds.size);
         bounds.Expand(-0.1f);
-        Gizmos.DrawWireCube(bounds.center, bounds.size) ;
+        //Gizmos.DrawWireCube(bounds.center, bounds.size) ;
     }
 }
