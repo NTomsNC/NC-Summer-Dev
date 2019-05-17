@@ -614,5 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38250c1cbc3687d4e843258daebdb757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorways: []
+  doorways:
+  - {fileID: 7590330862825361005}
+  - {fileID: 5536794853886333681}
   meshCollider: {fileID: 8130762023883463071}
