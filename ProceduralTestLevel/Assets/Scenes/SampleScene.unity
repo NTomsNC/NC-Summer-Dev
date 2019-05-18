@@ -246,14 +246,11 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
   roomPrefabs:
-  - {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 1099214147028191372, guid: d4c4cc94c03a84d4d8989faa225ba7e8, type: 3}
-  - {fileID: 8130762023993747717, guid: bed7bcb6f8483ee40bdc9590a17c102b, type: 3}
+  - {fileID: 1906018130684477496, guid: 40277b130e239e949a15aa9f7655baef, type: 3}
+  - {fileID: 4580717169221060124, guid: 88b892e0a0c876e4c8c74b97bb141bbc, type: 3}
+  - {fileID: 2081518865978351615, guid: 2a69b6077c2736342a12151d3027d15f, type: 3}
+  - {fileID: 3049686449528410534, guid: ad96564b8a17223478d44d1d183137ff, type: 3}
+  - {fileID: 5388629424062150632, guid: 9e198efe10842394fb469a1a01fdd820, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
