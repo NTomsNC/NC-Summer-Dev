@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 4435004890978987974}
   - component: {fileID: 7976090547752784703}
   - component: {fileID: 2694502036605463028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: outside 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

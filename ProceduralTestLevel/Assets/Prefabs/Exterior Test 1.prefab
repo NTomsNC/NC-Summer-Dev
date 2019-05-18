@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 7405109570269029063}
   - component: {fileID: 3247153193199835148}
   - component: {fileID: 2749931350758476146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 'Exterior Test Mesh '
   m_TagString: Untagged
   m_Icon: {fileID: 0}

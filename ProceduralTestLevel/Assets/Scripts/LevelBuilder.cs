@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class LevelBuilder : MonoBehaviour
 {
@@ -11,25 +12,40 @@ public class LevelBuilder : MonoBehaviour
     [Space(10)]
     public List<Room> roomPrefabs = new List<Room>();
 
-    [Space(10)]
-    public Vector2 iterationRange = new Vector2(3, 10);
+    public LayerMask roomLayerMask;
+
+    int level;
 
     StartRoom startRoom;
     EndRoom endRoom;
 
     List<Room> rooms = new List<Room>();
+    List<Doorway> availableDoorways = new List<Doorway>();    
 
-    List<Doorway> availableDoorways = new List<Doorway>();
-
-    public LayerMask roomLayerMask;
+    //Used to get the level for other scripts
+    public int Level
+    {
+        get { return level; }
+    }
 
     private void Start()
     {
         if(roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
         StartCoroutine("GenerateLevel");
+
+        level = PlayerPrefs.GetInt("Level", 1);
     }
 
+    //Delete when UI is set up
+    #region TempUI
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 250, 30), "Current Level: " + level.ToString());
+    }
+    #endregion
+
+    //Enumerator that generate the level. Primary functionality
     IEnumerator GenerateLevel()
     {
         WaitForSeconds startup = new WaitForSeconds(1f);
@@ -42,7 +58,7 @@ public class LevelBuilder : MonoBehaviour
         yield return interval;
 
         //Random iterations
-        int iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
+        int iterations = Random.Range(level + 5, level + 10);
 
         for (int i = 0; i < iterations; i++)
         {
@@ -64,6 +80,7 @@ public class LevelBuilder : MonoBehaviour
         //ResetGenerator();
     }
 
+    //Places starting room
     void PlaceStartRoom()
     {
         Debug.Log("Place start room");
@@ -83,6 +100,7 @@ public class LevelBuilder : MonoBehaviour
         rooms.Add(startRoom);
     }
 
+    //Places the player in the starting room
     void PlacePlayer()
     {
         GameObject controller = Instantiate(Player);
@@ -92,6 +110,7 @@ public class LevelBuilder : MonoBehaviour
         controller.transform.position = startPos;
     }
 
+    //Places the ending room for the level
     IEnumerator PlaceEndRoom()
     {
         Debug.Log("Place end room");
@@ -157,6 +176,7 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    //Used to place a room and determine location and rotation
     IEnumerator PlaceRoom()
     {
         Debug.Log("Place room");
@@ -223,6 +243,7 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    //Resets the entire generator if room placement fails
     public void ResetGenerator()
     {
         Debug.LogError("Reset generation");
@@ -252,6 +273,7 @@ public class LevelBuilder : MonoBehaviour
         StartCoroutine("GenerateLevel");
     }
 
+    //Adds each doorway to a list
     void AddDoorwaysToList(Room room, ref List<Doorway> list)
     {
         foreach(Doorway door in room.doorways)
@@ -261,6 +283,7 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    //Positions room at the chosen doorway. Will attempt with a new doorway if overlapping a room
     void PositionAtDoorway(ref Room room, Doorway roomDoorway, Doorway targetDoorway)
     {
         //reset position and rotation
@@ -279,6 +302,7 @@ public class LevelBuilder : MonoBehaviour
         room.transform.position = targetDoorway.transform.position - roomOffset;
     }
 
+    //Checks if current room is overlapping previously placed rooms
     bool CheckRoomOverlap(Room room)
     {
         Bounds rBounds = room.RoomBounds;
@@ -313,5 +337,18 @@ public class LevelBuilder : MonoBehaviour
         }
 
         return false;
+    }
+}
+
+[CustomEditor(typeof(LevelBuilder))]
+public class LevelBuilderEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        if(GUI.Button(new Rect(0, 0, 100, 30), "Reset Levels"))
+            PlayerPrefs.SetInt("Level", 1);
+
     }
 }
