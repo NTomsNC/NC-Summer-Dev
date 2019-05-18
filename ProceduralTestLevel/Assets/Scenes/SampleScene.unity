@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -204,13 +204,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.6007293, y: -0.20267604, z: 0.1609649, w: 0.7563974}
   m_LocalPosition: {x: 0, y: 4.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 76.913, y: -30.000002, z: 0}
 --- !u!1 &800036406
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,16 +246,22 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
   roomPrefabs:
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  - {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737, type: 3}
+  - {fileID: 1906018130684477496, guid: 54fcbb1677a3a404c825d1754e6229b5, type: 3}
+  - {fileID: 4580717169221060124, guid: c6792387ee4d07a42b5b611a9483d1f1, type: 3}
+  - {fileID: 2081518865978351615, guid: 6061cf80dc61b044898e3fbd882cd6d0, type: 3}
+  - {fileID: 1142204947774207097, guid: 99646633348766c4f9d1db9c160349e3, type: 3}
+  - {fileID: 2863310290484346321, guid: 7c41b2317b4f6f8409b69754155f916c, type: 3}
+  - {fileID: 5388629424062150632, guid: 0cc873ce0deca4249b3b3661fdeb8c33, type: 3}
+  - {fileID: 5479796274329091766, guid: cc6dac15b36fb1d4497a2da7a044cf7d, type: 3}
+  - {fileID: 5944386341397729425, guid: a7ce2c859053f2b479703f1921173084, type: 3}
   - {fileID: 8130762023993747717, guid: bed7bcb6f8483ee40bdc9590a17c102b, type: 3}
   - {fileID: 1099214147028191372, guid: d4c4cc94c03a84d4d8989faa225ba7e8, type: 3}
+  - {fileID: 2291179752140287862, guid: 67fd10e7fbff5c04c928f25976231a7c, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
   useIterationRange: 1
-  iterationRange: {x: 200, y: 200}
+  iterationRange: {x: 50, y: 50}
 --- !u!4 &800036408
 Transform:
   m_ObjectHideFlags: 0
