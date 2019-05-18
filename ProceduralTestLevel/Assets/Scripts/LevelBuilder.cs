@@ -11,8 +11,11 @@ public class LevelBuilder : MonoBehaviour
 
     [Space(10)]
     public List<Room> roomPrefabs = new List<Room>();
-
     public LayerMask roomLayerMask;
+
+    [Tooltip("For testing purposes. Disable when building game")]
+    public bool useIterationRange = false;
+    public Vector2 iterationRange = new Vector2(5, 15);
 
     int level;
 
@@ -48,36 +51,30 @@ public class LevelBuilder : MonoBehaviour
     //Enumerator that generate the level. Primary functionality
     IEnumerator GenerateLevel()
     {
-        WaitForSeconds startup = new WaitForSeconds(1f);
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
-
-        yield return startup;
 
         // Place start room
         PlaceStartRoom();
         yield return interval;
 
         //Random iterations
-        int iterations = Random.Range(level + 5, level + 10);
+        int iterations = 0;
+        if (!useIterationRange)  iterations = Random.Range(level + 5, level + 10);
+        else iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for (int i = 0; i < iterations; i++)
         {
             // Place random room from list
             yield return StartCoroutine(PlaceRoom());
-            yield return interval;
         }
 
         //Place end room
-        StartCoroutine(PlaceEndRoom());
-        yield return interval;
+        yield return StartCoroutine(PlaceEndRoom());
 
         //Level generation finished
         Debug.Log("Generation Finished");
 
-        yield return new WaitForSeconds(3);
-
         PlacePlayer();
-        //ResetGenerator();
     }
 
     //Places starting room
@@ -113,6 +110,7 @@ public class LevelBuilder : MonoBehaviour
     //Places the ending room for the level
     IEnumerator PlaceEndRoom()
     {
+        WaitForFixedUpdate interval = new WaitForFixedUpdate();
         Debug.Log("Place end room");
 
         //Instantiate
@@ -139,7 +137,8 @@ public class LevelBuilder : MonoBehaviour
                 //position room
                 Room eRoom = endRoom;
                 PositionAtDoorway(ref eRoom, currentDoor, availableDoor);
-                yield return new WaitForSeconds(0);
+                yield return interval;
+
                 if (CheckRoomOverlap(endRoom))
                 {
                     continue;
@@ -179,10 +178,14 @@ public class LevelBuilder : MonoBehaviour
     //Used to place a room and determine location and rotation
     IEnumerator PlaceRoom()
     {
+        WaitForFixedUpdate interval = new WaitForFixedUpdate();
         Debug.Log("Place room");
 
         //instantiate room
-        int r = Random.Range(0, roomPrefabs.Count);
+        int a = Random.Range(0, roomPrefabs.Count);
+        int b = Random.Range(0, roomPrefabs.Count);
+        int r = a < b ? a : b;
+
         Room currentRoom = Instantiate(roomPrefabs[r]) as Room;
         currentRoom.transform.parent = transform;
 
@@ -205,7 +208,7 @@ public class LevelBuilder : MonoBehaviour
             {
                 //position room
                 PositionAtDoorway(ref currentRoom, currentDoor, availableDoor);
-                yield return new WaitForSeconds(0);
+                yield return interval;      //slows down placement to allow proper overlap checking. If not here it will check before bounds have actually moved to new location
 
                 if(CheckRoomOverlap(currentRoom))
                 {
@@ -305,26 +308,27 @@ public class LevelBuilder : MonoBehaviour
     //Checks if current room is overlapping previously placed rooms
     bool CheckRoomOverlap(Room room)
     {
-        Bounds rBounds = room.RoomBounds;
-        rBounds.Expand(-0.1f);
+        //ENABLE if rooms start overlapping
+        //Bounds rBounds = room.RoomBounds;
+        //rBounds.Expand(-0.1f);
 
-        Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2, room.transform.rotation, roomLayerMask);
+        //Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2.5f, room.transform.rotation, roomLayerMask);
 
-        if(colliders.Length > 0)
-        {
-            Debug.Log("Overlap Detected");
-            return true;
-        }
+        //if (colliders.Length > 0)
+        //{
+        //    Debug.Log("Overlap Detected");
+        //    return true;
+        //}
 
-
+        float expansion = 5f;
         Vector3 roomPos = room.gameObject.transform.position;
-        Vector3 pt1 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
-        Vector3 pt2 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
-        Vector3 pt3 = new Vector3(room.RoomBounds.center.x - room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
-        Vector3 pt4 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
-        Vector3 pt5 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y + room.RoomBounds.extents.y, room.RoomBounds.center.z - room.RoomBounds.extents.z);
-        Vector3 pt6 = new Vector3(room.RoomBounds.center.x + room.RoomBounds.extents.x, room.RoomBounds.center.y - room.RoomBounds.extents.y, room.RoomBounds.center.z + room.RoomBounds.extents.z);
-        
+        Vector3 pt1 = new Vector3(room.RoomBounds.center.x - (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y + (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z - (room.RoomBounds.extents.z - expansion));
+        Vector3 pt2 = new Vector3(room.RoomBounds.center.x - (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y - (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z + (room.RoomBounds.extents.z - expansion));
+        Vector3 pt3 = new Vector3(room.RoomBounds.center.x - (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y + (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z + (room.RoomBounds.extents.z - expansion));
+        Vector3 pt4 = new Vector3(room.RoomBounds.center.x + (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y - (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z - (room.RoomBounds.extents.z - expansion));
+        Vector3 pt5 = new Vector3(room.RoomBounds.center.x + (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y + (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z - (room.RoomBounds.extents.z - expansion));
+        Vector3 pt6 = new Vector3(room.RoomBounds.center.x + (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y - (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z + (room.RoomBounds.extents.z - expansion));
+
         foreach (Room r in rooms)
         {
             if (r.RoomBounds.Intersects(room.RoomBounds) ||

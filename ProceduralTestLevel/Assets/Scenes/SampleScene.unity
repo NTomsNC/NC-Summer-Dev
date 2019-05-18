@@ -246,17 +246,16 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
   roomPrefabs:
+  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
+  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
   - {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 4413532584092572032, guid: 91a6028dba3247c47885782d17c87654, type: 3}
-  - {fileID: 1099214147028191372, guid: d4c4cc94c03a84d4d8989faa225ba7e8, type: 3}
   - {fileID: 8130762023993747717, guid: bed7bcb6f8483ee40bdc9590a17c102b, type: 3}
+  - {fileID: 1099214147028191372, guid: d4c4cc94c03a84d4d8989faa225ba7e8, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  useIterationRange: 0
+  iterationRange: {x: 35, y: 50}
 --- !u!4 &800036408
 Transform:
   m_ObjectHideFlags: 0
