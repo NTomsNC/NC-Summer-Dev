@@ -59,7 +59,7 @@ public class LevelBuilder : MonoBehaviour
 
         //Random iterations
         int iterations = 0;
-        if (!useIterationRange)  iterations = Random.Range(level + 5, level + 10);
+        if (!useIterationRange)  iterations = Random.Range(level * 2 + 5 , level * 3);
         else iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for (int i = 0; i < iterations; i++)
@@ -181,11 +181,12 @@ public class LevelBuilder : MonoBehaviour
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
         Debug.Log("Place room");
 
-        //instantiate room
+        //Logarithmetically choose a room
         int a = Random.Range(0, roomPrefabs.Count);
         int b = Random.Range(0, roomPrefabs.Count);
         int r = a < b ? a : b;
-
+        
+        //instantiate room
         Room currentRoom = Instantiate(roomPrefabs[r]) as Room;
         currentRoom.transform.parent = transform;
 
@@ -309,16 +310,16 @@ public class LevelBuilder : MonoBehaviour
     bool CheckRoomOverlap(Room room)
     {
         //ENABLE if rooms start overlapping
-        //Bounds rBounds = room.RoomBounds;
-        //rBounds.Expand(-0.1f);
+        Bounds rBounds = room.RoomBounds;
+        rBounds.Expand(-0.1f);
 
-        //Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2.5f, room.transform.rotation, roomLayerMask);
+        Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2.5f, room.transform.rotation, roomLayerMask);
 
-        //if (colliders.Length > 0)
-        //{
-        //    Debug.Log("Overlap Detected");
-        //    return true;
-        //}
+        if (colliders.Length > 0)
+        {
+            Debug.Log("Overlap Detected");
+            return true;
+        }
 
         float expansion = 5f;
         Vector3 roomPos = room.gameObject.transform.position;
