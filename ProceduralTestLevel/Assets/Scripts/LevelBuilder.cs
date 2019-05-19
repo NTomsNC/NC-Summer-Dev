@@ -311,17 +311,24 @@ public class LevelBuilder : MonoBehaviour
     {
         //ENABLE if rooms start overlapping
         Bounds rBounds = room.RoomBounds;
-        rBounds.Expand(-0.1f);
+        rBounds.Expand(-0.4f);
 
-        Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2.5f, room.transform.rotation, roomLayerMask);
+        Collider[] colliders = Physics.OverlapBox(rBounds.center, rBounds.extents / 2, room.transform.rotation, roomLayerMask);
 
         if (colliders.Length > 0)
         {
-            Debug.Log("Overlap Detected");
-            return true;
+            foreach(Collider c in colliders)
+            {
+                if(c.gameObject.transform.parent.gameObject.GetInstanceID() != room.gameObject.GetInstanceID())
+                {
+                    Debug.Log("Overlap Detected");
+                    return true;
+                }
+            }
+            
         }
 
-        float expansion = 5f;
+        float expansion = 0.4f;
         Vector3 roomPos = room.gameObject.transform.position;
         Vector3 pt1 = new Vector3(room.RoomBounds.center.x - (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y + (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z - (room.RoomBounds.extents.z - expansion));
         Vector3 pt2 = new Vector3(room.RoomBounds.center.x - (room.RoomBounds.extents.x - expansion), room.RoomBounds.center.y - (room.RoomBounds.extents.y - expansion), room.RoomBounds.center.z + (room.RoomBounds.extents.z - expansion));
