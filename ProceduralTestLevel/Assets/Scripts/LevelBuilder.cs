@@ -22,8 +22,11 @@ public class LevelBuilder : MonoBehaviour
     StartRoom startRoom;
     EndRoom endRoom;
 
+    public GameObject frame;
+
     List<Room> rooms = new List<Room>();
-    List<Doorway> availableDoorways = new List<Doorway>();    
+    List<Doorway> availableDoorways = new List<Doorway>();
+
 
     //Used to get the level for other scripts
     public int Level
@@ -227,6 +230,9 @@ public class LevelBuilder : MonoBehaviour
 
                 availableDoor.gameObject.SetActive(false);
                 availableDoorways.Remove(availableDoor);
+
+                Debug.Log("ooooooo " + currentDoor.transform.position.ToString());
+                GameObject go = Instantiate(frame, currentDoor.transform.position, Quaternion.identity);
 
                 //exit loop if room is placed
                 break;
