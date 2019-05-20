@@ -230,9 +230,9 @@ public class LevelBuilder : MonoBehaviour
 
                 availableDoor.gameObject.SetActive(false);
                 availableDoorways.Remove(availableDoor);
-
-                Debug.Log("ooooooo " + currentDoor.transform.position.ToString());
-                GameObject go = Instantiate(frame, currentDoor.transform.position, Quaternion.identity);
+                
+                // Adds a connector
+                GameObject go = Instantiate(frame, currentDoor.transform.position, currentDoor.transform.rotation);
 
                 //exit loop if room is placed
                 break;
