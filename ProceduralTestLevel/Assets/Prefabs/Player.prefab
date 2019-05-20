@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8e7d678fcc4234cb55faaac8297b2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayLength: 0.5
   moveSpeed: 5
   rotationSpeed: 15
   dashSpeed: 15
@@ -336,7 +337,7 @@ MonoBehaviour:
   grounded: 0
   roomLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
 --- !u!54 &1694381953219512860
 Rigidbody:
   m_ObjectHideFlags: 0

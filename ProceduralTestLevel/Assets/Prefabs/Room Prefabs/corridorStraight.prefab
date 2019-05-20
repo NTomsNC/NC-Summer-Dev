@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: 1388206008186680031}
   - {fileID: 8196828111246721821}
   meshCollider: {fileID: 6584127725763941027}
+  objectPrefabs: []
 --- !u!1 &7654002154757289925
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +304,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9088410939757313682}
     m_Modifications:
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_Name
+      value: Doorway 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -358,16 +369,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_Name
-      value: Doorway 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8038414419000892037, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_Convex
@@ -400,6 +401,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9088410939757313682}
     m_Modifications:
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_Name
+      value: Doorway 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -454,16 +465,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_Name
-      value: Doorway 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8038414419000892037, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}

@@ -647,6 +647,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2081518864559225636}
     m_Modifications:
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_Name
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -702,11 +707,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_Name
-      value: Doors
-      objectReference: {fileID: 0}
     - target: {fileID: 8038414419000892037, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_Convex
@@ -739,6 +739,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2081518864559225636}
     m_Modifications:
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_Name
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -794,11 +799,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_Name
-      value: Doors
-      objectReference: {fileID: 0}
     - target: {fileID: 8038414419000892037, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_Convex
@@ -831,6 +831,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2081518864559225636}
     m_Modifications:
+    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
+        type: 3}
+      propertyPath: m_Name
+      value: Doors
+      objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -886,11 +891,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7290204945029341521, guid: 23410eccba3b6c44abe7f0270aff7729,
-        type: 3}
-      propertyPath: m_Name
-      value: Doors
-      objectReference: {fileID: 0}
     - target: {fileID: 8038414419000892037, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_Convex
@@ -933,6 +933,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 2c5f1c5076fc5734497eb40814c74b50,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a26aa306c8a9ebb4aa8b242657b5934d, type: 2}
     - target: {fileID: -4216859302048453862, guid: 2c5f1c5076fc5734497eb40814c74b50,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1003,11 +1008,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: 2c5f1c5076fc5734497eb40814c74b50,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a26aa306c8a9ebb4aa8b242657b5934d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5f1c5076fc5734497eb40814c74b50, type: 3}
 --- !u!64 &1131095633051425129 stripped

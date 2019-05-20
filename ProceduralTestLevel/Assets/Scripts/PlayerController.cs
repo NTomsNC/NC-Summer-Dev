@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float rayLength = 0.75f;
     public float moveSpeed = 5;
     public float rotationSpeed = 3;
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
+        if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Everything");
         rb = GetComponent<Rigidbody>();
     }
 
@@ -57,10 +58,10 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGround()
     {
-        Ray ray = new Ray(transform.position, Vector3.down * 0.5f);
-        Debug.DrawRay(ray.origin, ray.direction * 0.5f);
+        Ray ray = new Ray(transform.position, Vector3.down * rayLength);
+        Debug.DrawRay(ray.origin, ray.direction * rayLength);
 
-        if(Physics.Raycast(ray, roomLayerMask))
+        if(Physics.Raycast(ray, rayLength, roomLayerMask))
         {
             grounded = true;
         }
