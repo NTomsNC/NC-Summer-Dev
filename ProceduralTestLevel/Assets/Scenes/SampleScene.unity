@@ -2147,6 +2147,7 @@ MonoBehaviour:
   - {fileID: 514480446}
   - {fileID: 1208989793}
   meshCollider: {fileID: 1789291017}
+  objectPrefabs: []
 --- !u!1 &350006685
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,6 +2402,7 @@ MonoBehaviour:
   - {fileID: 295619812}
   - {fileID: 1748168103}
   meshCollider: {fileID: 1033052747}
+  objectPrefabs: []
 --- !u!1 &402077321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2545,7 @@ MonoBehaviour:
   - {fileID: 1911612548}
   - {fileID: 1088164333}
   meshCollider: {fileID: 1929289661}
+  objectPrefabs: []
 --- !u!1 &409970122
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,6 +4497,7 @@ MonoBehaviour:
   - {fileID: 119412020}
   - {fileID: 1213079949}
   meshCollider: {fileID: 490614428}
+  objectPrefabs: []
 --- !u!1 &647431406
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,6 +4850,7 @@ MonoBehaviour:
   - {fileID: 818134588}
   - {fileID: 1686679354}
   meshCollider: {fileID: 1758796088}
+  objectPrefabs: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -5277,6 +5282,7 @@ MonoBehaviour:
   - {fileID: 729450337}
   - {fileID: 48808511}
   meshCollider: {fileID: 1006512884}
+  objectPrefabs: []
 --- !u!1 &784985809
 GameObject:
   m_ObjectHideFlags: 0
@@ -6316,6 +6322,7 @@ MonoBehaviour:
   - {fileID: 192420348}
   - {fileID: 1971847422}
   meshCollider: {fileID: 509788404}
+  objectPrefabs: []
 --- !u!1 &916342989
 GameObject:
   m_ObjectHideFlags: 0
@@ -8166,6 +8173,7 @@ MonoBehaviour:
   - {fileID: 995324568}
   - {fileID: 1674901272}
   meshCollider: {fileID: 205050146}
+  objectPrefabs: []
 --- !u!1 &1213079947
 GameObject:
   m_ObjectHideFlags: 0
@@ -8323,6 +8331,7 @@ MonoBehaviour:
   - {fileID: 1262524069}
   - {fileID: 794987622}
   meshCollider: {fileID: 1110289864}
+  objectPrefabs: []
 --- !u!1 &1257055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -8903,6 +8912,7 @@ MonoBehaviour:
   - {fileID: 436316448}
   - {fileID: 1296923199}
   meshCollider: {fileID: 784985811}
+  objectPrefabs: []
 --- !u!1 &1320924651
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,6 +9068,7 @@ MonoBehaviour:
   - {fileID: 2122548669}
   - {fileID: 2046396998}
   meshCollider: {fileID: 190930466}
+  objectPrefabs: []
 --- !u!1 &1346251440
 GameObject:
   m_ObjectHideFlags: 0
@@ -9551,6 +9562,7 @@ MonoBehaviour:
   - {fileID: 1789372915}
   - {fileID: 533075952}
   meshCollider: {fileID: 2057730539}
+  objectPrefabs: []
 --- !u!1 &1411323458
 GameObject:
   m_ObjectHideFlags: 0
@@ -10628,6 +10640,7 @@ MonoBehaviour:
   - {fileID: 563483852}
   - {fileID: 1994270291}
   meshCollider: {fileID: 50463970}
+  objectPrefabs: []
 --- !u!1 &1596981356
 GameObject:
   m_ObjectHideFlags: 0
@@ -11077,6 +11090,7 @@ MonoBehaviour:
   - {fileID: 1206750136}
   - {fileID: 429402170}
   meshCollider: {fileID: 470534836}
+  objectPrefabs: []
 --- !u!1 &1657094775
 GameObject:
   m_ObjectHideFlags: 0
@@ -11326,6 +11340,7 @@ MonoBehaviour:
   - {fileID: 1353599696}
   - {fileID: 24957629}
   meshCollider: {fileID: 721238883}
+  objectPrefabs: []
 --- !u!1 &1686679352
 GameObject:
   m_ObjectHideFlags: 0
@@ -11578,6 +11593,7 @@ MonoBehaviour:
   - {fileID: 415701239}
   - {fileID: 1286284941}
   meshCollider: {fileID: 608940123}
+  objectPrefabs: []
 --- !u!1 &1748168101
 GameObject:
   m_ObjectHideFlags: 0
@@ -11825,6 +11841,7 @@ MonoBehaviour:
   - {fileID: 648890321}
   - {fileID: 837444160}
   meshCollider: {fileID: 1657094777}
+  objectPrefabs: []
 --- !u!1 &1787345981
 GameObject:
   m_ObjectHideFlags: 0
@@ -12198,6 +12215,7 @@ MonoBehaviour:
   - {fileID: 916342991}
   - {fileID: 64298146}
   meshCollider: {fileID: 1310122974}
+  objectPrefabs: []
 --- !u!1 &1855173430
 GameObject:
   m_ObjectHideFlags: 0
@@ -13853,6 +13871,7 @@ MonoBehaviour:
   - {fileID: 409970124}
   - {fileID: 1538865940}
   meshCollider: {fileID: 1589216395}
+  objectPrefabs: []
 --- !u!1 &2122548667
 GameObject:
   m_ObjectHideFlags: 0
