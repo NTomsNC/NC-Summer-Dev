@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 4580717167504892285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8041, y: 1, z: 1}
   m_Children:
   - {fileID: 5086200993511394330}
   - {fileID: 5086200994031734212}
@@ -205,6 +205,7 @@ MonoBehaviour:
   - {fileID: 2473325500985827243}
   - {fileID: 2473325501583761013}
   meshCollider: {fileID: 3395772202543906692}
+  objectPrefabs: []
 --- !u!1 &8411486001773861966
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +372,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: cb68fc54d45ea214098074cf9becf46a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 2.70615
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: cb68fc54d45ea214098074cf9becf46a,
         type: 3}

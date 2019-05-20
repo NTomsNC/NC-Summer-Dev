@@ -116,6 +116,7 @@ MonoBehaviour:
   - {fileID: 81618876762921035}
   - {fileID: 81618877152962538}
   meshCollider: {fileID: 1131095633051425129}
+  objectPrefabs: []
 --- !u!1 &3678028055330287090
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +493,7 @@ PrefabInstance:
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.006
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
@@ -502,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.976
+      value: -8.018
       objectReference: {fileID: 0}
     - target: {fileID: 8720140021117580034, guid: 23410eccba3b6c44abe7f0270aff7729,
         type: 3}
