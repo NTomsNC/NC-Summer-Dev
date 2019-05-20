@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -40,14 +39,44 @@ public class Room : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < transform.childCount; i++)
+        GetChildObjects(transform);
+
+        if(objectPlacements.Count > 0)
+        {
+            PlaceItems();
+        }
+
+        Debug.Log("Placing items in room");
+    }
+
+    private void GetChildObjects(Transform parent)
+    {
+        for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
-            if(child.tag == "ObjectPlacement")
+            if (child.tag == "ObjectPlacement")
             {
                 objectPlacements.Add(child.gameObject);
             }
+            if(child.childCount > 0)
+            {
+                GetChildObjects(child.transform);
+
+            }
         }
-        Debug.Log("Placing items in room");
+    }
+
+    private void PlaceItems()
+    {
+        foreach(GameObject o in objectPlacements)
+        {
+            int random = Random.Range(0, objectPrefabs.Length);
+
+            //Spawn object
+            GameObject obj = Instantiate(objectPrefabs[random]);
+            obj.transform.parent = transform;
+            obj.transform.position = o.transform.position;
+            obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+        }
     }
 }
