@@ -331,7 +331,7 @@ MonoBehaviour:
   moveSpeed: 5
   rotationSpeed: 15
   dashSpeed: 15
-  dashWaitTime: 0.6
+  dashWaitTime: 0.3
   mesh: {fileID: 1694381952240554279}
   grounded: 0
   roomLayerMask:

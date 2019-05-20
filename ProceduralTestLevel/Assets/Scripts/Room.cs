@@ -7,7 +7,7 @@ public class Room : MonoBehaviour
     public MeshCollider meshCollider;
 
     public GameObject[] objectPrefabs;
-    private List<GameObject> objectPlacements;
+    private List<GameObject> objectPlacements = new List<GameObject>();
 
     public Bounds RoomBounds
     {
@@ -51,9 +51,9 @@ public class Room : MonoBehaviour
 
     private void GetChildObjects(Transform parent)
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < parent.childCount; i++)
         {
-            Transform child = transform.GetChild(i);
+            Transform child = parent.GetChild(i);
             if (child.tag == "ObjectPlacement")
             {
                 objectPlacements.Add(child.gameObject);
@@ -61,7 +61,6 @@ public class Room : MonoBehaviour
             if(child.childCount > 0)
             {
                 GetChildObjects(child.transform);
-
             }
         }
     }
