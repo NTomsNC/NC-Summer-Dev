@@ -45,8 +45,6 @@ public class Room : MonoBehaviour
         {
             PlaceItems();
         }
-
-        Debug.Log("Placing items in room");
     }
 
     private void GetChildObjects(Transform parent)
@@ -75,7 +73,7 @@ public class Room : MonoBehaviour
             GameObject obj = Instantiate(objectPrefabs[random]);
             obj.transform.parent = transform;
             obj.transform.position = o.transform.position;
-            obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+            //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
         }
     }
 }
