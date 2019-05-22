@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LevelBuilder
   - ObjectPlacement
+  - Rim
   layers:
   - Default
   - TransparentFX

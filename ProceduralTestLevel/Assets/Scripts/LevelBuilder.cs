@@ -276,6 +276,12 @@ public class LevelBuilder : MonoBehaviour
             Destroy(room.gameObject);
         }
 
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Rim");
+        foreach (GameObject go in doors)
+        {
+            Destroy(go);
+        }
+
         //Clear Lists
         rooms.Clear();
         availableDoorways.Clear();
