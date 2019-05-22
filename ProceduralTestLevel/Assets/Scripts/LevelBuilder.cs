@@ -232,8 +232,8 @@ public class LevelBuilder : MonoBehaviour
                 availableDoorways.Remove(availableDoor);
                 
                 // Adds a connector
-                GameObject doorObject = Instantiate(frame, currentDoor.transform.position, currentDoor.transform.rotation);
-                doorObject.transform.parent = transform;
+                //GameObject doorObject = Instantiate(frame, currentDoor.transform.position, currentDoor.transform.rotation);
+                //doorObject.transform.parent = transform;
 
                 //exit loop if room is placed
                 break;

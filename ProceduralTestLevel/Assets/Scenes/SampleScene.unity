@@ -5509,17 +5509,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303f959c8e71bf4b99aa932a84cc2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startRoomPrefab: {fileID: 6913224102689801759, guid: 10a566d12377fcc44a430834ecb021fb,
+  startRoomPrefab: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
     type: 3}
   endRoomPrefab: {fileID: 996133676259734903, guid: c08c10178940337489d8bcf397685cb5,
     type: 3}
   Player: {fileID: 1694381953219512865, guid: dfd0299935392fa479cfc3c1f76fe348, type: 3}
   roomPrefabs:
-  - {fileID: 5388629424062150632, guid: 0cc873ce0deca4249b3b3661fdeb8c33, type: 3}
-  - {fileID: 3049686449528410534, guid: d9a821d963a9e0640af284cc44b7f96d, type: 3}
-  - {fileID: 1906018130684477496, guid: 54fcbb1677a3a404c825d1754e6229b5, type: 3}
-  - {fileID: 5479796274329091766, guid: cc6dac15b36fb1d4497a2da7a044cf7d, type: 3}
-  - {fileID: 173576395095186851, guid: f61fffbab23cba543a71fd2c7422937d, type: 3}
+  - {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -14169,6 +14165,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
+        type: 3}
+      propertyPath: builder
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4106058550495190525, guid: 9007ff8c247c12e4581916ead75a2737,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14223,11 +14224,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
-        type: 3}
-      propertyPath: builder
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4106058550902989734, guid: 9007ff8c247c12e4581916ead75a2737,
         type: 3}
