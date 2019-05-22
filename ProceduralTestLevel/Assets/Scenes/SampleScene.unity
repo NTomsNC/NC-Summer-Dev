@@ -5524,7 +5524,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   useIterationRange: 1
-  iterationRange: {x: 25, y: 35}
+  iterationRange: {x: 500, y: 1000}
   frame: {fileID: 5570704349028203052, guid: 1ce4c819b320d0d49ae649e53f0179ef, type: 3}
 --- !u!4 &800036408
 Transform:
@@ -14169,11 +14169,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
-        type: 3}
-      propertyPath: builder
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4106058550495190525, guid: 9007ff8c247c12e4581916ead75a2737,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14228,6 +14223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
+        type: 3}
+      propertyPath: builder
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4106058550902989734, guid: 9007ff8c247c12e4581916ead75a2737,
         type: 3}
