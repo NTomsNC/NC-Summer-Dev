@@ -62,7 +62,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\CameraController.cs" />
     <Compile Include="Assets\Scripts\Doorway.cs" />
     <Compile Include="Assets\Scripts\EndRoom.cs" />
     <Compile Include="Assets\Scripts\LevelBuilder.cs" />

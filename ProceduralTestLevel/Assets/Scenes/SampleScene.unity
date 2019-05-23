@@ -5515,10 +5515,10 @@ MonoBehaviour:
     type: 3}
   Player: {fileID: 1694381953219512865, guid: dfd0299935392fa479cfc3c1f76fe348, type: 3}
   roomPrefabs:
-  - {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
   - {fileID: 811640240639274074, guid: 81fdd85a9c64b904a84a3ca204c3dde0, type: 3}
   - {fileID: 8892444619055171557, guid: beda23e27f316984c9c9964890ba0ca9, type: 3}
-  - {fileID: 8892444619055171557, guid: beda23e27f316984c9c9964890ba0ca9, type: 3}
+  - {fileID: 3323123971891466748, guid: 54b02c54570435d438150f1e4bb4c171, type: 3}
+  - {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
