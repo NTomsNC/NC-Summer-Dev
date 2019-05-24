@@ -2,43 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    // Movement direction
-    public Vector2 movementDirection;
-    public float movementSpeed;
+    public float rayLength = 0.75f;
+    public float moveSpeed = 5;
+    public float rotationSpeed = 3;
 
-    // Player Stats
-    [Space(15)]
-    public float speed = 10;
+    public float dashSpeed = 3;
+    public float dashWaitTime = 1f;
+    private float dashTimer = 0;
 
-    // Game Components
-    private Rigidbody2D rb;
+    public GameObject mesh;
 
-    // Start is called before the first frame update
-    void Start()
+    private string vInputAxis = "Vertical";
+    private string hInputAxis = "Horizontal";
+    private Rigidbody rb;
+
+    public bool grounded = false;
+    public LayerMask roomLayerMask;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Everything");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleInputs();
+        dashTimer += Time.deltaTime;
+
+        float vAxis = Input.GetAxis(vInputAxis);
+        float hAxis = Input.GetAxis(hInputAxis);
+
+        CheckGround();
+
+        if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
+        {
+            rb.isKinematic = false;
+            Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
+            rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
+
+            if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)
+            {
+                rb.velocity = nextDir * dashSpeed;
+                dashTimer = 0;
+            }          
+        }
+        else if(dashTimer > dashWaitTime && grounded)
+        {
+            rb.isKinematic = true;
+        }
     }
 
-    // Update the basic player direction
-    private void HandleInputs()
+    private void CheckGround()
     {
-        movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        movementSpeed = Mathf.Clamp(movementDirection.magnitude, 0.0f, 1.0f);
+        Ray ray = new Ray(transform.position, Vector3.down * rayLength);
+        Debug.DrawRay(ray.origin, ray.direction * rayLength);
 
-        movementDirection.Normalize();
-
-        rb.velocity = (movementDirection * movementSpeed) * speed;
-
-        if (rb.velocity != Vector2.zero)
-            transform.rotation = Quaternion.LookRotation(movementDirection, Vector3.forward);
+        if(Physics.Raycast(ray, rayLength, roomLayerMask))
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
     }
 }
