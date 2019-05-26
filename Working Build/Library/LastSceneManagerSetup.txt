@@ -1,5 +1,5 @@
 sceneSetups:
-- path: D:/Users/Nathe/OneDrive/Documents/GitHub/NC-Summer-Dev/NC Summer Project/Assets/Scenes/_Scene.unity
+- path: Assets/Scenes/SampleScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
