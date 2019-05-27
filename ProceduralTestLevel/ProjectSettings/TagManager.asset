@@ -5,8 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelBuilder
-  - ObjectPlacement
   - Rim
+  - 1x1m
+  - 2x2m
+  - 3x3m
   layers:
   - Default
   - TransparentFX
