@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class MainMenuController : MonoBehaviour
 
     public enum MenuState { Main, Saves, Options};
     public MenuState menuState;
-
-    public GameObject levelController;
 
     // Singleton (Awake)
     #region Singleton Pattern
@@ -77,7 +76,13 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadGame()
     {
-        GameObject go = GameObject.Instantiate(levelController);
-        playerSavesCanvas.SetActive(false);
+        SceneManager.LoadScene(0);
+    }
+
+    public void DeleteSave()
+    {
+        PlayerPrefs.SetInt("Level", 1);
+        PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+        PlayerPrefs.Save();
     }
 }

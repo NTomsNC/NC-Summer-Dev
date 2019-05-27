@@ -17,6 +17,9 @@ public class NextLevel : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerPrefs.SetInt("Level", level + 1);
+            PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+            PlayerPrefs.Save();
+
             SceneManager.LoadScene(0);
         }
     }

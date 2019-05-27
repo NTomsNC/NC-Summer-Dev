@@ -6,8 +6,15 @@ public class Room : MonoBehaviour
     public Doorway[] doorways;
     public MeshCollider meshCollider;
 
-    public GameObject[] objectPrefabs;
-    private List<GameObject> objectPlacements = new List<GameObject>();
+    [Header("Please use placement prefabs.")]
+    public bool randomizeObjectPlacement = false;
+    public GameObject[] objectPrefabs1x1m;
+    public GameObject[] objectPrefabs2x2m;
+    public GameObject[] objectPrefabs3x3m;
+
+    private List<GameObject> objects1x1m = new List<GameObject>();
+    private List<GameObject> objects2x2m = new List<GameObject>();
+    private List<GameObject> objects3x3m = new List<GameObject>();
 
     public Bounds RoomBounds
     {
@@ -41,7 +48,7 @@ public class Room : MonoBehaviour
     {
         GetChildObjects(transform);
 
-        if(objectPlacements.Count > 0)
+        if (objects1x1m.Count > 0)
         {
             PlaceItems();
         }
@@ -52,11 +59,22 @@ public class Room : MonoBehaviour
         for (int i = 0; i < parent.childCount; i++)
         {
             Transform child = parent.GetChild(i);
-            if (child.tag == "ObjectPlacement")
+            if (child.tag == "1x1m")
             {
-                objectPlacements.Add(child.gameObject);
+                objects1x1m.Add(child.gameObject);
+                child.gameObject.SetActive(false);
             }
-            if(child.childCount > 0)
+            else if (child.tag == "2x2m")
+            {
+                objects2x2m.Add(child.gameObject);
+                child.gameObject.SetActive(false);
+            }
+            else if (child.tag == "3x3m")
+            {
+                objects3x3m.Add(child.gameObject);
+                child.gameObject.SetActive(false);
+            }
+            if (child.childCount > 0)
             {
                 GetChildObjects(child.transform);
             }
@@ -65,15 +83,55 @@ public class Room : MonoBehaviour
 
     private void PlaceItems()
     {
-        foreach(GameObject o in objectPlacements)
-        {
-            int random = Random.Range(0, objectPrefabs.Length);
+        int temp = randomizeObjectPlacement ? 2 : 1;
 
-            //Spawn object
-            GameObject obj = Instantiate(objectPrefabs[random]);
-            obj.transform.parent = transform;
-            obj.transform.position = o.transform.position;
-            //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+        if (objectPrefabs1x1m.Length > 0)
+        {
+            foreach (GameObject o in objects1x1m)
+            {
+                if (Random.Range(0, temp) == 0)
+                {
+                    int random = Random.Range(0, objectPrefabs1x1m.Length);
+
+                    //Spawn object
+                    GameObject obj = Instantiate(objectPrefabs1x1m[random]);
+                    obj.transform.parent = transform;
+                    obj.transform.position = o.transform.position;
+                    //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                }
+            }
+        }
+        if (objectPrefabs2x2m.Length > 0)
+        {
+            foreach (GameObject o in objects2x2m)
+            {
+                if (Random.Range(0, temp) == 0)
+                {
+                    int random = Random.Range(0, objectPrefabs2x2m.Length);
+
+                    //Spawn object
+                    GameObject obj = Instantiate(objectPrefabs1x1m[random]);
+                    obj.transform.parent = transform;
+                    obj.transform.position = o.transform.position;
+                    //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                }
+            }
+        }
+        if (objectPrefabs3x3m.Length > 0)
+        {
+            foreach (GameObject o in objects3x3m)
+            {
+                if (Random.Range(0, temp) == 0)
+                {
+                    int random = Random.Range(0, objectPrefabs3x3m.Length);
+
+                    //Spawn object
+                    GameObject obj = Instantiate(objectPrefabs3x3m[random]);
+                    obj.transform.parent = transform;
+                    obj.transform.position = o.transform.position;
+                    //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                }
+            }
         }
     }
 }

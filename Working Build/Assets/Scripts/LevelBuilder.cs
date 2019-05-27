@@ -5,53 +5,29 @@ using UnityEditor;
 
 public class LevelBuilder : MonoBehaviour
 {
-    // Singleton
-    #region Singleton Pattern
-    public static LevelBuilder Instance { get; private set; }
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
-    
-    // Public
-    #region Public
-    [Header("Character Prefabs")]
+    [Space(5)]
+    public Room startRoomPrefab, endRoomPrefab;
     public GameObject Player;
 
-    [Header("Room Prefabs")]
-    public Room startRoomPrefab;
-    public Room endRoomPrefab;
-
-    [Space(5)]
+    [Space(10)]
+    public List<Room> roomPrefabs = new List<Room>();
     public LayerMask roomLayerMask;
 
-    public List<Room> roomPrefabs = new List<Room>();
-
-    [Header("Level Generation Prefabs")]
-
     [Tooltip("For testing purposes. Disable when building game")]
-    public Vector2 iterationRange = new Vector2(5, 15);
     public bool useIterationRange = false;
-    #endregion
+    public Vector2 iterationRange = new Vector2(5, 15);
 
-    // Private
-    #region Private
     int level;
+    int seed;
 
     StartRoom startRoom;
     EndRoom endRoom;
 
+    public GameObject frame;
+
     List<Room> rooms = new List<Room>();
     List<Doorway> availableDoorways = new List<Doorway>();
-    #endregion
+
 
     //Used to get the level for other scripts
     public int Level
@@ -63,9 +39,17 @@ public class LevelBuilder : MonoBehaviour
     {
         if(roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
-        StartCoroutine("GenerateLevel");
-
+        //Loading level status
         level = PlayerPrefs.GetInt("Level", 1);
+        seed = PlayerPrefs.GetInt("Seed", System.DateTime.Now.Second);
+        Random.InitState(seed);
+
+        //Saving level status
+        PlayerPrefs.SetInt("Level", level);
+        PlayerPrefs.SetInt("Seed", seed);
+        PlayerPrefs.Save();
+
+        StartCoroutine("GenerateLevel");
     }
 
     //Delete when UI is set up
@@ -301,11 +285,11 @@ public class LevelBuilder : MonoBehaviour
             Destroy(room.gameObject);
         }
 
-        //GameObject[] doors = GameObject.FindGameObjectsWithTag("Rim");
-        //foreach (GameObject go in doors)
-        //{
-        //    Destroy(go);
-        //}
+        GameObject[] doors = GameObject.FindGameObjectsWithTag("Rim");
+        foreach (GameObject go in doors)
+        {
+            Destroy(go);
+        }
 
         //Clear Lists
         rooms.Clear();
@@ -390,15 +374,15 @@ public class LevelBuilder : MonoBehaviour
     }
 }
 
-//[CustomEditor(typeof(LevelBuilder))]
-//public class LevelBuilderEditor : Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        DrawDefaultInspector();
+[CustomEditor(typeof(LevelBuilder))]
+public class LevelBuilderEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
 
-//        if(GUI.Button(new Rect(0, 0, 100, 30), "Reset Levels"))
-//            PlayerPrefs.SetInt("Level", 1);
+        if(GUI.Button(new Rect(0, 0, 100, 30), "Reset Levels"))
+            PlayerPrefs.SetInt("Level", 1);
 
-//    }
-//}
+    }
+}
