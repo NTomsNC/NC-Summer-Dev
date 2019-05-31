@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43805128, g: 0.4860298, b: 0.5663062, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -240,6 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303f959c8e71bf4b99aa932a84cc2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveGame:
+    seed: 0
+    level: 0
+  saveNum: 1
   startRoomPrefab: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
     type: 3}
   endRoomPrefab: {fileID: 996133676259734903, guid: c08c10178940337489d8bcf397685cb5,
@@ -253,7 +257,7 @@ MonoBehaviour:
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  useIterationRange: 1
+  useIterationRange: 0
   iterationRange: {x: 100, y: 200}
   frame: {fileID: 5570704349028203052, guid: 1ce4c819b320d0d49ae649e53f0179ef, type: 3}
 --- !u!4 &800036408

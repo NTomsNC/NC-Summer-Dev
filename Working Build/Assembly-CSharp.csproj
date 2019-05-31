@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\NextLevel.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />
+    <Compile Include="Assets\Scripts\SaveClass.cs" />
     <Compile Include="Assets\Scripts\StartRoom.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Blake/Documents/GitHub/NC-Summer-Dev/Working Build/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

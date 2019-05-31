@@ -5,6 +5,9 @@ using UnityEditor;
 
 public class LevelBuilder : MonoBehaviour
 {
+    public SaveClass saveGame;
+    public int saveNum = 1;
+
     [Space(5)]
     public Room startRoomPrefab, endRoomPrefab;
     public GameObject Player;
@@ -17,9 +20,6 @@ public class LevelBuilder : MonoBehaviour
     public bool useIterationRange = false;
     public Vector2 iterationRange = new Vector2(5, 15);
 
-    int level;
-    int seed;
-
     StartRoom startRoom;
     EndRoom endRoom;
 
@@ -28,26 +28,14 @@ public class LevelBuilder : MonoBehaviour
     List<Room> rooms = new List<Room>();
     List<Doorway> availableDoorways = new List<Doorway>();
 
-
-    //Used to get the level for other scripts
-    public int Level
-    {
-        get { return level; }
-    }
-
     private void Start()
     {
         if(roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
-        //Loading level status
-        level = PlayerPrefs.GetInt("Level", 1);
-        seed = PlayerPrefs.GetInt("Seed", System.DateTime.Now.Second);
-        Random.InitState(seed);
-
-        //Saving level status
-        PlayerPrefs.SetInt("Level", level);
-        PlayerPrefs.SetInt("Seed", seed);
-        PlayerPrefs.Save();
+        //Loading saveGame.level status
+        saveNum = PlayerPrefs.GetInt("CurrentSave");
+        saveGame.Load(saveNum);
+        Random.InitState(saveGame.seed);
 
         StartCoroutine("GenerateLevel");
     }
@@ -56,7 +44,7 @@ public class LevelBuilder : MonoBehaviour
     #region TempUI
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 250, 30), "Current Level: " + level.ToString());
+        GUI.Label(new Rect(10, 10, 250, 30), "Current Level: " + saveGame.level.ToString());
     }
     #endregion
 
@@ -71,7 +59,7 @@ public class LevelBuilder : MonoBehaviour
 
         //Random iterations
         int iterations = 0;
-        if (!useIterationRange)  iterations = Random.Range(level * 2 + 5 , level * 3);
+        if (!useIterationRange)  iterations = Random.Range(saveGame.level * 2 + 5 , saveGame.level * 3);
         else iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for (int i = 0; i < iterations; i++)
@@ -114,12 +102,11 @@ public class LevelBuilder : MonoBehaviour
     {
         GameObject controller = Instantiate(Player);
 
-        Vector3 startPos = startRoom.transform.position;
-        startPos.y += 1;
-        controller.transform.position = startPos;
+        controller.transform.position = saveGame.PlayerTransform().position;
+        controller.transform.rotation = saveGame.PlayerTransform().rotation;
     }
 
-    //Places the ending room for the level
+    //Places the ending room for the saveGame.level
     IEnumerator PlaceEndRoom()
     {
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
@@ -383,9 +370,9 @@ public class LevelBuilderEditor : Editor
 
         if (GUI.Button(new Rect(0, 0, 100, 30), "Reset all"))
         {
-            PlayerPrefs.SetInt("Level", 1);
-            PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
-            PlayerPrefs.Save();
+            LevelBuilder lvlBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
+
+            lvlBuilder.saveGame.ResetAll(1);
         }
 
     }

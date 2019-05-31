@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public bool grounded = false;
     public LayerMask roomLayerMask;
 
+    public Vector2 help; //Testing only
+
     private void Start()
     {
         if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Everything");
@@ -32,8 +34,12 @@ public class PlayerController : MonoBehaviour
     {
         dashTimer += Time.deltaTime;
 
-        float vAxis = Input.GetAxis(vInputAxis);
-        float hAxis = Input.GetAxis(hInputAxis);
+        float vAxis = Input.GetAxisRaw(vInputAxis);
+        float hAxis = Input.GetAxisRaw(hInputAxis);
+
+        //For testing
+        help.y = vAxis;
+        help.x = hAxis;
 
         CheckGround();
 
