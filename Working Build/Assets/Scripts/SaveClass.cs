@@ -59,7 +59,7 @@ public class SaveClass
     public void ResetAll(int saveNum)
     {
         level = 1;
-        seed = System.DateTime.Now.Second;
+        seed = (int)System.DateTime.UtcNow.Ticks;
 
         Vector3 tempVector = new Vector3(0, 1, 0);
 
