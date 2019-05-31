@@ -381,8 +381,12 @@ public class LevelBuilderEditor : Editor
     {
         DrawDefaultInspector();
 
-        if(GUI.Button(new Rect(0, 0, 100, 30), "Reset Levels"))
+        if (GUI.Button(new Rect(0, 0, 100, 30), "Reset all"))
+        {
             PlayerPrefs.SetInt("Level", 1);
+            PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+            PlayerPrefs.Save();
+        }
 
     }
 }
