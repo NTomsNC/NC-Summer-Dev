@@ -51,6 +51,7 @@ MonoBehaviour:
 =======
     width: 1920
     height: 947
+<<<<<<< HEAD
   m_MinSize: {x: 798, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 1
@@ -60,6 +61,12 @@ MonoBehaviour:
 =======
   controlID: 79
 >>>>>>> parent of 76823b3e... Save Class
+=======
+  m_MinSize: {x: 683, y: 494}
+  m_MaxSize: {x: 14004, y: 14044}
+  vertical: 1
+  controlID: 51
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -86,6 +93,9 @@ MonoBehaviour:
 =======
     width: 1920
     height: 997
+<<<<<<< HEAD
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
+=======
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
   m_MinSize: {x: 950, y: 544}
   m_MaxSize: {x: 10000, y: 10000}
@@ -161,6 +171,7 @@ MonoBehaviour:
 =======
     width: 1920
     height: 947
+<<<<<<< HEAD
   m_MinSize: {x: 798, y: 494}
   m_MaxSize: {x: 14004, y: 14044}
   vertical: 0
@@ -170,6 +181,12 @@ MonoBehaviour:
 =======
   controlID: 80
 >>>>>>> parent of 76823b3e... Save Class
+=======
+  m_MinSize: {x: 683, y: 494}
+  m_MaxSize: {x: 14004, y: 14044}
+  vertical: 0
+  controlID: 52
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -207,11 +224,15 @@ MonoBehaviour:
   m_MaxSize: {x: 10002, y: 14044}
   vertical: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 53
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 =======
   controlID: 81
 >>>>>>> parent of 76823b3e... Save Class
+=======
+  controlID: 53
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,11 +270,15 @@ MonoBehaviour:
   m_MaxSize: {x: 8006, y: 4022}
   vertical: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   controlID: 54
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 =======
   controlID: 82
 >>>>>>> parent of 76823b3e... Save Class
+=======
+  controlID: 54
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -281,6 +306,9 @@ MonoBehaviour:
     width: 298
 >>>>>>> parent of 76823b3e... Save Class
     height: 645
+<<<<<<< HEAD
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
+=======
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
   m_MinSize: {x: 202, y: 222}
   m_MaxSize: {x: 4002, y: 4022}
@@ -318,6 +346,9 @@ MonoBehaviour:
     width: 1230
 >>>>>>> parent of 76823b3e... Save Class
     height: 645
+<<<<<<< HEAD
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
+=======
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
   m_MinSize: {x: 204, y: 222}
   m_MaxSize: {x: 4004, y: 4022}
@@ -385,6 +416,7 @@ MonoBehaviour:
 =======
     width: 374
     height: 947
+<<<<<<< HEAD
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
   m_MinSize: {x: 277, y: 72}
 =======
@@ -396,6 +428,11 @@ MonoBehaviour:
 >>>>>>> parent of 76823b3e... Save Class
   m_MaxSize: {x: 4002, y: 4022}
   m_ActualView: {fileID: 21}
+=======
+  m_MinSize: {x: 277, y: 72}
+  m_MaxSize: {x: 4002, y: 4022}
+  m_ActualView: {fileID: 20}
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
   m_Panes:
   - {fileID: 20}
   - {fileID: 21}
@@ -598,6 +635,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_SelectedIDs: 64410000
       m_LastClickedID: 16740
       m_ExpandedIDs: 8efbffff
@@ -611,6 +649,11 @@ MonoBehaviour:
       m_LastClickedID: 17294
       m_ExpandedIDs: fa17feff841ffeff8efbffff8e430000
 >>>>>>> parent of 76823b3e... Save Class
+=======
+      m_SelectedIDs: ae82fdff
+      m_LastClickedID: -163154
+      m_ExpandedIDs: 7e8efdff52acfdff18b2fdffe0f7fdff8605feffc20efeff1c18feff1431feff8036feff386afeff3c75feff3c80feffb888fefff48efeff04d6feff66eefeff0806ffff3406ffff4c58fffffcf9ffff8efbffffbc460000c6460000ba4c0000768c0000
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -822,6 +865,7 @@ MonoBehaviour:
     m_SelectedIDs: 56380000
     m_LastClickedID: 14422
     m_ExpandedIDs: 00000000c62f0000fa310000c6350000423a0000fa3e00007246000000ca9a3b
+<<<<<<< HEAD
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
 =======
     scrollPos: {x: 0, y: 0}
@@ -829,6 +873,8 @@ MonoBehaviour:
     m_LastClickedID: 12798
     m_ExpandedIDs: 00000000c62f0000fe310000cc3500004e3a00000a3f0000284c000000ca9a3b
 >>>>>>> parent of 76823b3e... Save Class
+=======
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -858,6 +904,7 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000c82f0000fc310000c6350000423a0000fa3e000072460000
 =======
     m_ExpandedIDs: 00000000c62f0000fa310000c6350000423a0000fa3e000072460000
@@ -865,6 +912,9 @@ MonoBehaviour:
 =======
     m_ExpandedIDs: 00000000c62f0000fe310000cc3500000a3f0000284c0000
 >>>>>>> parent of 76823b3e... Save Class
+=======
+    m_ExpandedIDs: 00000000c62f0000fa310000c6350000423a0000fa3e000072460000
+>>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
