@@ -5,28 +5,57 @@ using UnityEditor;
 
 public class LevelBuilder : MonoBehaviour
 {
+    [Header("Room Prefabs -----------------------------------------------")]
+    [Space(20)]
+
+    public Room startRoomPrefab;
+    public Room endRoomPrefab;
+    public LayerMask roomLayerMask;
+    
+    public List<sRoom> roomPrefabs = new List<sRoom>();
+
+    [Header("Door Prefab ------------------------------------------------")]
+    public GameObject frame;
+
+    [Header("Player Prefab ----------------------------------------------")]
+    public GameObject Player;
+
+    [Header("Generation Prefab -----------------------------------------")]
+    [Tooltip("For testing purposes. Disable when building game")]
+    public Vector2 iterationRange = new Vector2(5, 15);
+    public bool useIterationRange = false;
+
+    [Header("Additional Features")]
+    public bool trimExtraHallways = false;
+
+    [Header("Instance data ----------------------------------------------")]
     public SaveClass saveGame;
     public int saveNum = 1;
 
-    [Space(5)]
-    public Room startRoomPrefab, endRoomPrefab;
-    public GameObject Player;
+    public int level;
+    public int seed;
 
-    [Space(10)]
-    public List<Room> roomPrefabs = new List<Room>();
-    public LayerMask roomLayerMask;
-
-    [Tooltip("For testing purposes. Disable when building game")]
-    public bool useIterationRange = false;
-    public Vector2 iterationRange = new Vector2(5, 15);
+    [Header("Debug ------------------------------------------------------")]
+    public bool debugMode = false;
 
     StartRoom startRoom;
     EndRoom endRoom;
 
-    public GameObject frame;
-
     List<Room> rooms = new List<Room>();
     List<Doorway> availableDoorways = new List<Doorway>();
+
+    [System.Serializable]
+    public class sRoom
+    {
+        public Room room;
+        public int chance;
+
+        sRoom(Room inDoor, int inChance)
+        {
+            chance = inChance;
+            room = inDoor;
+        }
+    }
 
     private void Start()
     {
@@ -48,6 +77,64 @@ public class LevelBuilder : MonoBehaviour
     }
     #endregion
 
+    private void CleanupLevel()
+    {
+        GameObject[] hallways = GameObject.FindGameObjectsWithTag("Hallway");
+        for (int i = 0; i < hallways.Length; i++)
+        {
+            Doorway[] doorways = hallways[i].GetComponent<Room>().doorways;
+            for (int j = 0; j < doorways.Length; j++)
+            {
+                List<GameObject> deactivatedDoors = new List<GameObject>();
+                if (doorways[j].gameObject.active)
+                {
+                    hallways[i].gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color = Color.red;
+                    for (int d = 0; d < doorways.Length; d++)
+                    {
+                        if (!doorways[d].gameObject.active)
+                        {
+                            deactivatedDoors.Add(doorways[d].gameObject);
+                        }
+                    }
+
+                    hallways[i].gameObject.SetActive(false);
+                }
+
+                if (deactivatedDoors.Count != 0)
+                {
+                    for (int d = 0; d < deactivatedDoors.Count; d++)
+                    {
+                        if (debugMode)
+                            Debug.Log("Added Door");
+
+                        GameObject newDoor = GameObject.Instantiate(deactivatedDoors[d], deactivatedDoors[d].transform.position, deactivatedDoors[d].transform.rotation);
+                        newDoor.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
+
+    // Finds any doors that are within 0.5f and removes them
+    private void OpenPossibleDoor()
+    {
+        GameObject[] Doors = GameObject.FindGameObjectsWithTag("Door");
+        for (int i = 0; i < Doors.Length; i++)
+        {
+            for (int j = i + 1; j < Doors.Length; j++)
+            {
+                if (Vector3.Distance(Doors[i].transform.position, Doors[j].transform.position) < 0.5f)
+                {
+                    if (debugMode)
+                        Debug.Log("Door found");
+
+                    Doors[i].SetActive(false);
+                    Doors[j].SetActive(false);
+                }
+            }
+        }
+    }
+
     //Enumerator that generate the level. Primary functionality
     IEnumerator GenerateLevel()
     {
@@ -68,11 +155,19 @@ public class LevelBuilder : MonoBehaviour
             yield return StartCoroutine(PlaceRoom());
         }
 
+        if (trimExtraHallways)
+        {
+            OpenPossibleDoor();
+            CleanupLevel();
+        }
+
         //Place end room
         yield return StartCoroutine(PlaceEndRoom());
 
         //Level generation finished
-        Debug.Log("Generation Finished");
+
+        if (debugMode)
+            Debug.Log("Generation Finished");
 
         PlacePlayer();
     }
@@ -80,7 +175,8 @@ public class LevelBuilder : MonoBehaviour
     //Places starting room
     void PlaceStartRoom()
     {
-        Debug.Log("Place start room");
+        if (debugMode)
+            Debug.Log("Place start room");
 
         //Instantiate
         startRoom = Instantiate(startRoomPrefab) as StartRoom;
@@ -110,7 +206,9 @@ public class LevelBuilder : MonoBehaviour
     IEnumerator PlaceEndRoom()
     {
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
-        Debug.Log("Place end room");
+
+        if (debugMode)
+            Debug.Log("Place end room");
 
         //Instantiate
         endRoom = Instantiate(endRoomPrefab) as EndRoom;
@@ -174,19 +272,42 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    private int GenerateRandomRoom()
+    {
+        int chance = 0;
+        for (int i = 0; i < roomPrefabs.Count; i++)
+            chance += roomPrefabs[i].chance;
+
+        int r = Random.Range(0, chance);
+
+        int total = 0;
+        for (int j = 0; j < roomPrefabs.Count; j++)  {
+            total += roomPrefabs[j].chance;
+            if (r < total)
+            {
+                r = j;
+                break;
+            }
+        }
+
+        if (debugMode)
+            Debug.Log(r);
+
+        return r;
+    }
+
     //Used to place a room and determine location and rotation
     IEnumerator PlaceRoom()
     {
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
-        Debug.Log("Place room");
 
-        //Logarithmetically choose a room
-        int a = Random.Range(0, roomPrefabs.Count);
-        int b = Random.Range(0, roomPrefabs.Count);
-        int r = a < b ? a : b;
+        if (debugMode)
+            Debug.Log("Place room");
+
+        int r = GenerateRandomRoom();
         
         //instantiate room
-        Room currentRoom = Instantiate(roomPrefabs[r]) as Room;
+        Room currentRoom = Instantiate(roomPrefabs[r].room) as Room;
         currentRoom.transform.parent = transform;
 
         //Create doorway list to loop over
@@ -221,15 +342,14 @@ public class LevelBuilder : MonoBehaviour
                 rooms.Add(currentRoom);
 
                 //remove occupied doorways
-                currentDoor.gameObject.SetActive(false);
-                availableDoorways.Remove(currentDoor);
+                if (!trimExtraHallways)
+                {
+                    currentDoor.gameObject.SetActive(false);
+                    availableDoorways.Remove(currentDoor);
 
-                availableDoor.gameObject.SetActive(false);
-                availableDoorways.Remove(availableDoor);
-                
-                // Adds a connector
-                //GameObject doorObject = Instantiate(frame, currentDoor.transform.position, currentDoor.transform.rotation);
-                //doorObject.transform.parent = transform;
+                    availableDoor.gameObject.SetActive(false);
+                    availableDoorways.Remove(availableDoor);
+                }
 
                 //exit loop if room is placed
                 break;
@@ -253,7 +373,8 @@ public class LevelBuilder : MonoBehaviour
     //Resets the entire generator if room placement fails
     public void ResetGenerator()
     {
-        Debug.LogError("Reset generation");
+        if (debugMode)
+            Debug.LogError("Reset generation");
 
         StopCoroutine("GenerateLevel");
 
@@ -330,7 +451,9 @@ public class LevelBuilder : MonoBehaviour
             {
                 if(c.gameObject.transform.parent.gameObject.GetInstanceID() != room.gameObject.GetInstanceID())
                 {
-                    Debug.Log("Overlap Detected");
+                    if (debugMode)
+                        Debug.Log("Overlap Detected");
+
                     return true;
                 }
             }
@@ -352,7 +475,9 @@ public class LevelBuilder : MonoBehaviour
                 r.RoomBounds.Contains(roomPos) || r.RoomBounds.Contains(room.RoomBounds.min) || r.RoomBounds.Contains(room.RoomBounds.max) || r.RoomBounds.Contains(pt1)
                 || r.RoomBounds.Contains(pt2) || r.RoomBounds.Contains(pt3) || r.RoomBounds.Contains(pt4) || r.RoomBounds.Contains(pt5) || r.RoomBounds.Contains(pt6))
             {
-                Debug.Log("Overlap Detected");
+                if (debugMode)
+                    Debug.Log("Overlap Detected");
+
                 return true;
             }
         }
@@ -368,7 +493,7 @@ public class LevelBuilderEditor : Editor
     {
         DrawDefaultInspector();
 
-        if (GUI.Button(new Rect(0, 0, 100, 30), "Reset all"))
+        if (GUI.Button(new Rect(0, 20, 400, 20), "Reset all"))
         {
             LevelBuilder lvlBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
 
