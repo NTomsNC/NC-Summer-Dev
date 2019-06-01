@@ -10,7 +10,11 @@ public class MainMenuController : MonoBehaviour
     public GameObject playerSavesCanvas;
     public GameObject SettingsCanvas;
 
-    public enum MenuState { Main, Saves, Options};
+    public GameObject SaveStatePrefab;
+    public List<GameObject> SaveStates = new List<GameObject>();
+    public int numberOfSaves = 5;
+
+    public enum MenuState { Main, Saves, Options };
     public MenuState menuState;
 
     // Singleton (Awake)
@@ -37,7 +41,8 @@ public class MainMenuController : MonoBehaviour
     void Update()
     {
         // Check for the menu state of Options
-        if (menuState == MenuState.Options) {
+        if (menuState == MenuState.Options)
+        {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 menuState = MenuState.Main;
@@ -72,6 +77,17 @@ public class MainMenuController : MonoBehaviour
         menuState = MenuState.Saves;
         mainMenuCanvas.SetActive(false);
         playerSavesCanvas.SetActive(true);
+
+        for (int i = 0; i < numberOfSaves; i++)
+        {
+            GameObject newSaveState;
+
+            newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, (120 * i) + 200, 0), Quaternion.identity, playerSavesCanvas.transform);
+            newSaveState.GetComponent<SaveData>().saveSeed = i;
+            newSaveState.GetComponent < SaveData>().saveDataID = i;
+
+            SaveStates.Add(newSaveState);
+        }
     }
 
     public void LoadGame(int saveNum)
@@ -86,5 +102,10 @@ public class MainMenuController : MonoBehaviour
     public void DeleteSave(int saveNum)
     {
         PlayerPrefs.DeleteKey("Save" + saveNum);
+    }
+
+    public void RemoveSaveState(int index)
+    {
+        // To do, Remove 
     }
 }
