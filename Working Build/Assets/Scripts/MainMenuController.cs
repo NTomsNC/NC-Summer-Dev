@@ -74,17 +74,15 @@ public class MainMenuController : MonoBehaviour
         playerSavesCanvas.SetActive(true);
     }
 
-    public void LoadGame(int saveNum)
+    public void LoadGame()
     {
-        //Used to load proper saves in levelBuilder
-        PlayerPrefs.SetInt("CurrentSave", saveNum);
-        PlayerPrefs.Save();
-
         SceneManager.LoadScene(0);
     }
 
-    public void DeleteSave(int saveNum)
+    public void DeleteSave()
     {
-        PlayerPrefs.DeleteKey("Save" + saveNum);
+        PlayerPrefs.SetInt("Level", 1);
+        PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+        PlayerPrefs.Save();
     }
 }
