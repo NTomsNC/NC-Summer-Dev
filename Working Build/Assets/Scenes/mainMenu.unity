@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 912725359}
-  - component: {fileID: 912725358}
+  - component: {fileID: 912725360}
   m_Layer: 0
   m_Name: Main Menu Controller
   m_TagString: Untagged
@@ -204,31 +204,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &912725358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912725357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7eebcda80029b344b9c9c65b46bdc42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMenuCanvas: {fileID: 5104311666840034458}
-  playerSavesCanvas: {fileID: 813516765002590796}
-  SettingsCanvas: {fileID: 1106044682431511138}
-  SaveStatePrefab: {fileID: 2169050339043354273, guid: f6a9361fc63de7e44bdd1d43150d027d,
-    type: 3}
-  SaveStates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  numberOfSaves: 5
-  menuState: 0
 --- !u!4 &912725359
 Transform:
   m_ObjectHideFlags: 0
@@ -243,6 +218,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &912725360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912725357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe699103904a2b5419c600a466b68437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameStates: 0
+  mainMenuCanvas: {fileID: 5104311666840034458}
+  playerSavesCanvas: {fileID: 813516765002590796}
+  SettingsCanvas: {fileID: 1106044682431511138}
+  SaveStatePrefab: {fileID: 2169050339043354273, guid: f6a9361fc63de7e44bdd1d43150d027d,
+    type: 3}
+  numberOfSaves: 5
 --- !u!1 &1511749108
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,6 +591,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Saves Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 7666779680122387202, guid: 25c24b137d6d9c344ae189e4929ab9bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 71202866464846644, guid: 25c24b137d6d9c344ae189e4929ab9bf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -656,29 +655,29 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     - target: {fileID: 2785734255101877044, guid: 25c24b137d6d9c344ae189e4929ab9bf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     - target: {fileID: 7968484041702397054, guid: 25c24b137d6d9c344ae189e4929ab9bf,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     - target: {fileID: 474383197, guid: 25c24b137d6d9c344ae189e4929ab9bf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     - target: {fileID: 1175884059, guid: 25c24b137d6d9c344ae189e4929ab9bf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     - target: {fileID: 1811632193, guid: 25c24b137d6d9c344ae189e4929ab9bf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25c24b137d6d9c344ae189e4929ab9bf, type: 3}
 --- !u!4 &7049005254704964218 stripped
@@ -769,11 +768,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 912725360}
+    - target: {fileID: 2690147256545994244, guid: 9e7160fc691cb94499506f19ee490a0a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene_Saves
+      objectReference: {fileID: 0}
     - target: {fileID: 728208332581338284, guid: 9e7160fc691cb94499506f19ee490a0a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 912725358}
+      objectReference: {fileID: 912725360}
+    - target: {fileID: 728208332581338284, guid: 9e7160fc691cb94499506f19ee490a0a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene_Options
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e7160fc691cb94499506f19ee490a0a, type: 3}

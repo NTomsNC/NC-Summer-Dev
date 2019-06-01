@@ -183,6 +183,7 @@ MonoBehaviour:
   saveDataID: 0
   saveSeed: 0
   loadSceneID: 0
+  GenerateRandomKey: 0
   txtName: {fileID: 7687326067896024209}
 --- !u!1 &2527484112965696517
 GameObject:

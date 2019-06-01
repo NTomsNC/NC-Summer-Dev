@@ -65,7 +65,6 @@
     <Compile Include="Assets\Scripts\Doorway.cs" />
     <Compile Include="Assets\Scripts\EndRoom.cs" />
     <Compile Include="Assets\Scripts\LevelBuilder.cs" />
-    <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\NextLevel.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

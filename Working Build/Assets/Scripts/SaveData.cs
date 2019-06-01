@@ -51,6 +51,6 @@ public class SaveData : MonoBehaviour
     // Called but the Delete btn
     public void RemoveSave()
     {
-        MainMenuController.Instance.RemoveSaveState(saveDataID);
+        MenuController.Instance.RemoveSaveState(saveDataID);
     }
 }
