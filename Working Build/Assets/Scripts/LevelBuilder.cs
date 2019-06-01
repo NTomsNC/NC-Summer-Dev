@@ -6,9 +6,12 @@ using UnityEditor;
 public class LevelBuilder : MonoBehaviour
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     [Header("Room Prefabs -----------------------------------------------")]
     [Space(20)]
 =======
+=======
+>>>>>>> parent of 76823b3e... Save Class
     [Space(5)]
     public Room startRoomPrefab, endRoomPrefab;
     public GameObject Player;
@@ -49,6 +52,9 @@ public class LevelBuilder : MonoBehaviour
     int level;
     int seed;
 
+    int level;
+    int seed;
+
     StartRoom startRoom;
     EndRoom endRoom;
 
@@ -56,12 +62,24 @@ public class LevelBuilder : MonoBehaviour
     List<Doorway> availableDoorways = new List<Doorway>();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     [System.Serializable]
     public class sRoom
+=======
+
+    //Used to get the level for other scripts
+    public int Level
+    {
+        get { return level; }
+    }
+
+    private void Start()
+>>>>>>> parent of 76823b3e... Save Class
     {
         public Room room;
         public int chance;
 
+<<<<<<< HEAD
         sRoom(Room inDoor, int inChance)
         {
             chance = inChance;
@@ -88,11 +106,16 @@ public class LevelBuilder : MonoBehaviour
 
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 76823b3e... Save Class
         //Loading level status
         level = PlayerPrefs.GetInt("Level", 1);
         seed = PlayerPrefs.GetInt("Seed", System.DateTime.Now.Second);
         Random.InitState(seed);
 
+<<<<<<< HEAD
+>>>>>>> parent of 76823b3e... Save Class
+=======
 >>>>>>> parent of 76823b3e... Save Class
         //Saving level status
         PlayerPrefs.SetInt("Level", level);
@@ -123,7 +146,11 @@ public class LevelBuilder : MonoBehaviour
         //Random iterations
         int iterations = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (!useIterationRange) iterations = Random.Range(level * 2 + 5, level * 3);
+=======
+        if (!useIterationRange)  iterations = Random.Range(level * 2 + 5 , level * 3);
+>>>>>>> parent of 76823b3e... Save Class
 =======
         if (!useIterationRange)  iterations = Random.Range(level * 2 + 5 , level * 3);
 >>>>>>> parent of 76823b3e... Save Class
@@ -545,6 +572,7 @@ public class LevelBuilderEditor : Editor
         if (GUI.Button(new Rect(0, 20, 400, 20), "Reset all"))
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             //PlayerPrefs.SetInt("Level", 1);
             //PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
             //PlayerPrefs.Save();
@@ -552,6 +580,11 @@ public class LevelBuilderEditor : Editor
             LevelBuilder lvlBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
 
             lvlBuilder.saveGame.ResetAll(1);
+=======
+            PlayerPrefs.SetInt("Level", 1);
+            PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+            PlayerPrefs.Save();
+>>>>>>> parent of 76823b3e... Save Class
 =======
             PlayerPrefs.SetInt("Level", 1);
             PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);

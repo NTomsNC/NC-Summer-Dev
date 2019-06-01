@@ -248,6 +248,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
 <<<<<<< HEAD
+<<<<<<< HEAD
   roomPrefabs:
   - room: {fileID: 811640240639274074, guid: 81fdd85a9c64b904a84a3ca204c3dde0, type: 3}
     chance: 1
@@ -258,6 +259,8 @@ MonoBehaviour:
   - room: {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
     chance: 1
 =======
+=======
+>>>>>>> parent of 76823b3e... Save Class
   useIterationRange: 1
   iterationRange: {x: 100, y: 200}
 >>>>>>> parent of 76823b3e... Save Class

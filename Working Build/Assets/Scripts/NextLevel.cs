@@ -17,6 +17,7 @@ public class NextLevel : MonoBehaviour
         if (other.tag == "Player")
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             PlayerPrefs.SetInt("Level", level + 1);
             PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
             PlayerPrefs.Save();
@@ -28,6 +29,11 @@ public class NextLevel : MonoBehaviour
 
             saveGame.Save(saveGame.level + 1, System.DateTime.Now.Second, pTransform, saveNum);
 >>>>>>> parent of 0db3f975... DateTime.Now.Seconds changed to DateTime.UTCTime.ticks
+=======
+            PlayerPrefs.SetInt("Level", level + 1);
+            PlayerPrefs.SetInt("Seed", System.DateTime.Now.Second);
+            PlayerPrefs.Save();
+>>>>>>> parent of 76823b3e... Save Class
 
             SceneManager.LoadScene(0);
         }
