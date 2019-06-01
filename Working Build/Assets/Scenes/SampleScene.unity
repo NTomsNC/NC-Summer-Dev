@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 2
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 256
@@ -240,26 +240,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303f959c8e71bf4b99aa932a84cc2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveGame:
-    seed: 0
-    level: 0
-  saveNum: 1
   startRoomPrefab: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
     type: 3}
   endRoomPrefab: {fileID: 996133676259734903, guid: c08c10178940337489d8bcf397685cb5,
     type: 3}
-  Player: {fileID: 1694381953219512865, guid: dfd0299935392fa479cfc3c1f76fe348, type: 3}
-  roomPrefabs:
-  - {fileID: 811640240639274074, guid: 81fdd85a9c64b904a84a3ca204c3dde0, type: 3}
-  - {fileID: 8892444619055171557, guid: beda23e27f316984c9c9964890ba0ca9, type: 3}
-  - {fileID: 3323123971891466748, guid: 54b02c54570435d438150f1e4bb4c171, type: 3}
-  - {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  useIterationRange: 0
-  iterationRange: {x: 100, y: 200}
+  roomPrefabs:
+  - room: {fileID: 811640240639274074, guid: 81fdd85a9c64b904a84a3ca204c3dde0, type: 3}
+    chance: 1
+  - room: {fileID: 3323123971891466748, guid: 54b02c54570435d438150f1e4bb4c171, type: 3}
+    chance: 1
+  - room: {fileID: 8892444619055171557, guid: beda23e27f316984c9c9964890ba0ca9, type: 3}
+    chance: 1
+  - room: {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
+    chance: 1
   frame: {fileID: 5570704349028203052, guid: 1ce4c819b320d0d49ae649e53f0179ef, type: 3}
+  Player: {fileID: 1694381953219512865, guid: dfd0299935392fa479cfc3c1f76fe348, type: 3}
+  iterationRange: {x: 20, y: 40}
+  useIterationRange: 1
+  trimExtraHallways: 1
+  level: 0
+  seed: 0
+  saveGame:
+    seed: 0
+    level: 0
+    playerHealth: 0
+    playerPos: {x: 0, y: 0, z: 0}
+    playerRotation: {x: 0, y: 0, z: 0, w: 0}
+  saveNum: 1
+  debugMode: 0
 --- !u!4 &800036408
 Transform:
   m_ObjectHideFlags: 0
