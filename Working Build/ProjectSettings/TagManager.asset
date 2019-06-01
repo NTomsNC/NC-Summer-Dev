@@ -7,12 +7,6 @@ TagManager:
   - LevelBuilder
   - ObjectPlacement
   - Rim
-  - 2x2m
-  - 3x3m
-  - 1x1m
-  - Door
-  - Hallway
-  - Room
   layers:
   - Default
   - TransparentFX

@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3391853598750702243}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,8 +210,8 @@ GameObject:
   - component: {fileID: 442707470740607163}
   - component: {fileID: 3323123971891466748}
   m_Layer: 0
-  m_Name: AscendDescend
-  m_TagString: Hallway
+  m_Name: Room
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,10 +249,7 @@ MonoBehaviour:
   - {fileID: 3391853598750702243}
   - {fileID: 4011620899827235089}
   meshCollider: {fileID: 2883863118168434289}
-  randomizeObjectPlacement: 0
-  objectPrefabs1x1m: []
-  objectPrefabs2x2m: []
-  objectPrefabs3x3m: []
+  objectPrefabs: []
 --- !u!1 &7306465397611259902
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +353,7 @@ GameObject:
   - component: {fileID: 4011620899827235089}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
