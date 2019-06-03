@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using UnityEditor; // needed for editor changes
+using UnityEngine.AI; //Needed for navmesh
 
 public class LevelBuilder : MonoBehaviour
 {
     [Header("Room Prefabs -----------------------------------------------")]
     [Space(20)]
+
+    public NavMeshSurface navmesh;
 
     public Room startRoomPrefab;
     public Room endRoomPrefab;
@@ -169,6 +172,8 @@ public class LevelBuilder : MonoBehaviour
             Debug.Log("Generation Finished");
 
         PlacePlayer();
+
+        navmesh.BuildNavMesh(); //Allows for AI to navigate level
     }
 
     //Places starting room

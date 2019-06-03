@@ -3,10 +3,9 @@
 [System.Serializable]
 public class SaveClass
 {
+    //All data to be stored
     public int seed;
     public int level;
-
-    [SerializeField]
     private int playerHealth = 0;
     [SerializeField]
     private Vector3 playerPos;
