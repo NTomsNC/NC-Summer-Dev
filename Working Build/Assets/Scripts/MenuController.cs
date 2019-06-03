@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 // OnAwake() -> Sets up a Singleton, use MenuController.Instance to use any public functions without having to reference this class
 // Update()-> Checks to see if the player has pressed esc, if true then return to the main menu (as of now)
 
-// LoadScene_Saves(), LoadScene_Options(), LoadScene_MainMenu() -> Load the corresponding menus and any options
+// LoadScene_Saves(), LoadScene_Option done s(), LoadScene_MainMenu() -> Load the corresponding menus and any options
 // LoadScene_Game() -> Loads the game using save data
 // LoadPlayerData() -> Called by LoadScene_Game(), it initializes PlayerPrefs
 // RemoveSaveState() -> Removes a save state and repositions the remaining save states correctly
@@ -84,6 +84,11 @@ public class MenuController : MonoBehaviour
 
                 mainMenuCanvas.SetActive(true);
                 playerSavesCanvas.SetActive(false);
+
+                for (int i = 0; i < numberOfSaves; i++)
+                {
+                    Destroy(SaveStates[i]);
+                }
             }
         }
     }
@@ -98,7 +103,7 @@ public class MenuController : MonoBehaviour
         {
             GameObject newSaveState;
 
-            newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, (120 * i) + 200, 0), Quaternion.identity, playerSavesCanvas.transform);
+            newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0), Quaternion.identity, playerSavesCanvas.transform);
             newSaveState.GetComponent<SaveData>().saveSeed = i;
             newSaveState.GetComponent<SaveData>().saveDataID = i;
 
@@ -134,5 +139,29 @@ public class MenuController : MonoBehaviour
     public void RemoveSaveState(int index)
     {
         // To do, Remove 
+        Destroy(SaveStates[index]);
+
+        SaveStates.RemoveAt(index);
+
+        numberOfSaves--;
+
+        for (int i = 0; i < SaveStates.Count; i++)
+        {
+            SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
+            SaveStates[i].GetComponent<SaveData>().saveDataID = i;
+        }
+    }
+
+    public void AddSaveState()
+    {
+        numberOfSaves++;
+        
+        SaveStates.Add(GameObject.Instantiate(SaveStatePrefab, Vector3.zero, Quaternion.identity, playerSavesCanvas.transform));
+    
+        for (int i = 0; i < SaveStates.Count; i++)
+        {
+            SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
+            SaveStates[i].GetComponent<SaveData>().saveDataID = i;
+        }
     }
 }
