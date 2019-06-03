@@ -4,20 +4,24 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     private SaveClass saveGame;
-    private int saveNum;
+    private int currentSave;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            saveGame = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().saveGame;
-            saveNum = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().saveNum;
-            Transform pTransform = new GameObject().transform;
+            //Sets up data in preperation to save
+            saveGame = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().saveGame;  //Grab savegame from levelbuilder
+            currentSave = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().currentSave;    //Grab the saveID number
+            int seed = (int)System.Math.Abs(System.DateTime.Now.Ticks);
+
+            //Creates a new transform and sets the player transform so player spawns properly in next level
+            Transform pTransform = new GameObject().transform; 
             pTransform.position = new Vector3(0,1,0);
 
-            saveGame.Save(saveGame.level + 1, System.DateTime.Now.Second, pTransform, saveNum);
+            saveGame.Save(saveGame.level + 1, seed, pTransform, currentSave); //Saves the game
 
-            Object.Destroy(pTransform.gameObject);
+            Destroy(pTransform.gameObject);
             SceneManager.LoadScene(0);
         }
     }

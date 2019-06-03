@@ -18,7 +18,8 @@ public class LevelBuilder : MonoBehaviour
     public GameObject frame;
 
     [Header("Player Prefab ----------------------------------------------")]
-    public GameObject Player;
+    public GameObject playerPrefab;
+    public GameObject cameraPrefab;
 
     [Header("Generation Prefab -----------------------------------------")]
     [Tooltip("For testing purposes. Disable when building game")]
@@ -30,10 +31,7 @@ public class LevelBuilder : MonoBehaviour
 
     [Header("Instance data ----------------------------------------------")]
     public SaveClass saveGame;
-    public int saveNum = 1;
-
-    public int level;
-    public int seed;
+    public int currentSave = 1;
 
     [Header("Debug ------------------------------------------------------")]
     public bool debugMode = false;
@@ -62,8 +60,8 @@ public class LevelBuilder : MonoBehaviour
         if(roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
         //Loading saveGame.level status
-        saveNum = PlayerPrefs.GetInt("CurrentSave");
-        saveGame.Load(saveNum);
+        currentSave = PlayerPrefs.GetInt("CurrentSave");
+        saveGame.Load(currentSave);
         Random.InitState(saveGame.seed);
 
         StartCoroutine("GenerateLevel");
@@ -77,6 +75,7 @@ public class LevelBuilder : MonoBehaviour
     }
     #endregion
 
+    //Removes extra hallways that lead away from the level that dont lead to a room
     private void CleanupLevel()
     {
         GameObject[] hallways = GameObject.FindGameObjectsWithTag("Hallway");
@@ -115,7 +114,7 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
-    // Finds any doors that are within 0.5f and removes them
+    //Finds any doors that are within 0.5f and removes them
     private void OpenPossibleDoor()
     {
         GameObject[] Doors = GameObject.FindGameObjectsWithTag("Door");
@@ -196,10 +195,12 @@ public class LevelBuilder : MonoBehaviour
     //Places the player in the starting room
     void PlacePlayer()
     {
-        GameObject controller = Instantiate(Player);
+        GameObject controller = Instantiate(playerPrefab);
 
         controller.transform.position = saveGame.PlayerTransform().position;
         controller.transform.rotation = saveGame.PlayerTransform().rotation;
+
+        Instantiate(cameraPrefab);
     }
 
     //Places the ending room for the saveGame.level

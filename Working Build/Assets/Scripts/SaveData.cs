@@ -15,35 +15,27 @@ using UnityEngine.SceneManagement;
 
 public class SaveData : MonoBehaviour
 {
-    // Used to remove the Save Data
-    public int saveDataID;
-
-    // The Save data seed to load
-    public int saveSeed;
-
     // The Scene to load
-    public int loadSceneID = 0;
+    static public int loadSceneID = 0;
 
-    public bool GenerateRandomKey = false;
-
+    public int saveDataID;
     public GameObject txtName;
 
     // Called on Start
     private void Start()
     {
-        // Gets a randome seed
-        if(GenerateRandomKey)
-            saveSeed = Random.Range(0, 1000);
+        //Temp save class to load up information for the save.
+        SaveClass save = new SaveClass();
+        save.Load(saveDataID);
 
         // Sets the saves name
-        txtName.GetComponent<Text>().text = "Save #" + saveDataID + ", With seed of (" + saveSeed + ")" ;
+        txtName.GetComponent<Text>().text = "Save #" + saveDataID + " with seed #" + save.seed;
     }
 
     // Called but the Load btn
-    public void LoadWithSaveData()
+    public void LoadSave()
     {
-        PlayerPrefs.SetInt("CurrentSave", saveSeed);
-        PlayerPrefs.Save();
+        SaveClass.SetSaveUsed(saveDataID);
 
         SceneManager.LoadScene(loadSceneID);
     }
@@ -52,5 +44,8 @@ public class SaveData : MonoBehaviour
     public void RemoveSave()
     {
         MenuController.Instance.RemoveSaveState(saveDataID);
+
+        //This deletes the data involved with the save
+        SaveClass.DeleteSave(saveDataID);
     }
 }

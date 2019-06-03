@@ -36,7 +36,7 @@ public class MenuController : MonoBehaviour
     // Save Data
     [Header("Save States ------------------------------------------------")]
     public GameObject SaveStatePrefab;
-    public int numberOfSaves = 5;
+    public int numberOfSaves = 0;
 
     private List<GameObject> SaveStates = new List<GameObject>();
 
@@ -54,9 +54,12 @@ public class MenuController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        mainMenuCanvas.gameObject.SetActive(true);
-        SettingsCanvas.gameObject.SetActive(false);
-        playerSavesCanvas.gameObject.SetActive(false);
+        if(mainMenuCanvas != null) mainMenuCanvas.gameObject.SetActive(true);
+        if(SettingsCanvas != null) SettingsCanvas.gameObject.SetActive(false);
+        if(playerSavesCanvas != null) playerSavesCanvas.gameObject.SetActive(false);
+
+        //Gets amount of saves
+        numberOfSaves = PlayerPrefs.GetInt("SaveCount", 0);
     }
     #endregion
 
@@ -93,6 +96,7 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    //Hides other object trees and shows saves tree
     public void LoadScene_Saves()
     {
         gameStates = eGameStates.SAVE_GAME;
@@ -104,12 +108,13 @@ public class MenuController : MonoBehaviour
             GameObject newSaveState;
 
             newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0), Quaternion.identity, playerSavesCanvas.transform);
-            newSaveState.GetComponent<SaveData>().saveSeed = i;
             newSaveState.GetComponent<SaveData>().saveDataID = i;
 
             SaveStates.Add(newSaveState);
         }
     }
+
+    //Hides other object trees and shows options tree
     public void LoadScene_Options()
     {
         gameStates = eGameStates.OPTIONS;
@@ -117,25 +122,19 @@ public class MenuController : MonoBehaviour
         SettingsCanvas.SetActive(true);
     }
 
-    // Loads the Main menu
+    //Loads the Main menu
     public void LoadScene_MainMenu()
     {
+        LevelBuilder lvlBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
+        Transform t = new GameObject().transform;
+        t = GameObject.FindGameObjectWithTag("Player").transform;
+
+        lvlBuilder.saveGame.Save(lvlBuilder.saveGame.level, lvlBuilder.saveGame.seed, t, lvlBuilder.currentSave);
+
         SceneManager.LoadScene(1);
     }
 
-    // Loads the Game with save data
-    public void LoadScene_Game(int saveNum)
-    {
-        LoadPlayerData(saveNum);
-        SceneManager.LoadScene(0);
-    }
-
-    private void LoadPlayerData(int saveNum)
-    {
-        PlayerPrefs.SetInt("CurrentSave", saveNum);
-        PlayerPrefs.Save();
-    }
-
+    //Deletes a save file that the player chooses
     public void RemoveSaveState(int index)
     {
         // To do, Remove 
@@ -143,7 +142,10 @@ public class MenuController : MonoBehaviour
 
         SaveStates.RemoveAt(index);
 
+        //Decreases and saves save count
         numberOfSaves--;
+        PlayerPrefs.SetInt("SaveCount", numberOfSaves);
+        PlayerPrefs.Save();
 
         for (int i = 0; i < SaveStates.Count; i++)
         {
@@ -152,9 +154,13 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    //Creates a new Save file that the player sees in the save file UI
     public void AddSaveState()
     {
+        //Increases and saves save count
         numberOfSaves++;
+        PlayerPrefs.SetInt("SaveCount", numberOfSaves);
+        PlayerPrefs.Save();
         
         SaveStates.Add(GameObject.Instantiate(SaveStatePrefab, Vector3.zero, Quaternion.identity, playerSavesCanvas.transform));
     

@@ -12,16 +12,12 @@ public class PlayerController : MonoBehaviour
     public float dashWaitTime = 1f;
     private float dashTimer = 0;
 
-    public GameObject mesh;
-
     private string vInputAxis = "Vertical";
     private string hInputAxis = "Horizontal";
     private Rigidbody rb;
 
     public bool grounded = false;
     public LayerMask roomLayerMask;
-
-    public Vector2 help; //Testing only
 
     private void Start()
     {
@@ -37,17 +33,13 @@ public class PlayerController : MonoBehaviour
         float vAxis = Input.GetAxisRaw(vInputAxis);
         float hAxis = Input.GetAxisRaw(hInputAxis);
 
-        //For testing
-        help.y = vAxis;
-        help.x = hAxis;
-
         CheckGround();
 
         if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
         {
             rb.isKinematic = false;
             Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
             rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
 
             if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)

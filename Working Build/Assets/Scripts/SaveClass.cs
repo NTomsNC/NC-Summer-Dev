@@ -56,10 +56,12 @@ public class SaveClass
         }
     }
 
+    //---------------------------------------------------------------------
+    //Used to populate a save with new information. Used when making a new save file if one cannot be loaded
     public void ResetAll(int saveNum)
     {
         level = 1;
-        seed = System.DateTime.Now.Second;
+        seed = (int)System.Math.Abs(System.DateTime.Now.Ticks);
 
         Vector3 tempVector = new Vector3(0, 1, 0);
 
@@ -79,5 +81,20 @@ public class SaveClass
         tempT.rotation = playerRotation;
 
         return tempT;
+    }
+
+    //---------------------------------------------------------------------
+    //Deletes the save from the system
+    static public void DeleteSave(int saveNum)
+    {
+        PlayerPrefs.DeleteKey("Save" + saveNum);
+    }
+
+    //---------------------------------------------------------------------
+    //Sets the save file to load when opening levelBuilder
+    static public void SetSaveUsed(int saveNum)
+    {
+        PlayerPrefs.SetInt("CurrentSave", saveNum);
+        PlayerPrefs.Save();
     }
 }
