@@ -446,3 +446,9 @@ C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-C
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.csproj.CopyComplete
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Boo.Lang.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\UnityEditor.UI.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\NavMeshComponentsExamplesEditor.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\NavMeshComponentsEditor.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\NavMeshComponents.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\NavMeshComponentsExamples.pdb

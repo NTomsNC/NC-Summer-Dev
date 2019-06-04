@@ -63,16 +63,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\CameraTrackPlayer.cs" />
-    <Compile Include="Assets\Scripts\Doorway.cs" />
-    <Compile Include="Assets\Scripts\EndRoom.cs" />
-    <Compile Include="Assets\Scripts\LevelBuilder.cs" />
-    <Compile Include="Assets\Scripts\MenuController.cs" />
-    <Compile Include="Assets\Scripts\NextLevel.cs" />
+    <Compile Include="Assets\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\Doorway.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\EndRoom.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\LevelBuilder.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\NextLevel.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\Room.cs" />
+    <Compile Include="Assets\Scripts\LevelGeneration\StartRoom.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Room.cs" />
     <Compile Include="Assets\Scripts\SaveClass.cs" />
-    <Compile Include="Assets\Scripts\SaveData.cs" />
-    <Compile Include="Assets\Scripts\StartRoom.cs" />
+    <Compile Include="Assets\Scripts\UI\MenuController.cs" />
+    <Compile Include="Assets\Scripts\UI\SaveData.cs" />
     <None Include="Assets\NavMeshComponents-master\ProjectSettings\ProjectVersion.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Blake/Documents/GitHub/NC-Summer-Dev/Working Build/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

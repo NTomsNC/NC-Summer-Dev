@@ -545,7 +545,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -742,7 +742,7 @@ MonoBehaviour:
   cameraPrefab: {fileID: 4881219147290051500, guid: b60bb9d866846e04491ef3c04707ca1f,
     type: 3}
   iterationRange: {x: 25, y: 35}
-  useIterationRange: 1
+  useIterationRange: 0
   trimExtraHallways: 0
   saveGame:
     seed: 0
