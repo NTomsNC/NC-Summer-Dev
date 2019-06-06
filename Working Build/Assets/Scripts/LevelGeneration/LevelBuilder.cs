@@ -14,7 +14,7 @@ public class LevelBuilder : MonoBehaviour
     public Room startRoomPrefab;
     public Room endRoomPrefab;
     public LayerMask roomLayerMask;
-    
+
     public List<sRoom> roomPrefabs = new List<sRoom>();
 
     [Header("Door Prefab ------------------------------------------------")]
@@ -60,7 +60,7 @@ public class LevelBuilder : MonoBehaviour
 
     private void Start()
     {
-        if(roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
+        if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
         //Loading saveGame.level status
         currentSave = PlayerPrefs.GetInt("CurrentSave");
@@ -68,7 +68,7 @@ public class LevelBuilder : MonoBehaviour
         Random.InitState(saveGame.seed);
 
         StartCoroutine("GenerateLevel");
-    }
+    }   
 
     //Delete when UI is set up
     #region TempUI
@@ -148,7 +148,7 @@ public class LevelBuilder : MonoBehaviour
 
         //Random iterations
         int iterations = 0;
-        if (!useIterationRange)  iterations = Random.Range(saveGame.level * 2 + 5 , saveGame.level * 3);
+        if (!useIterationRange) iterations = Random.Range(saveGame.level * 2 + 5, saveGame.level * 3);
         else iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for (int i = 0; i < iterations; i++)
@@ -200,12 +200,18 @@ public class LevelBuilder : MonoBehaviour
     //Places the player in the starting room
     void PlacePlayer()
     {
-        GameObject controller = Instantiate(playerPrefab);
+        GameObject controller = GameObject.Instantiate(playerPrefab);
 
-        controller.transform.position = saveGame.PlayerTransform().position;
-        controller.transform.rotation = saveGame.PlayerTransform().rotation;
+        controller.transform.position = saveGame.PlayerPos;
+        controller.transform.rotation = saveGame.PlayerRotation;
 
         Instantiate(cameraPrefab);
+    }
+
+    public void ClearPlayer()
+    {
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("MainCamera"));
     }
 
     //Places the ending room for the saveGame.level
@@ -287,7 +293,8 @@ public class LevelBuilder : MonoBehaviour
         int r = Random.Range(0, chance);
 
         int total = 0;
-        for (int j = 0; j < roomPrefabs.Count; j++)  {
+        for (int j = 0; j < roomPrefabs.Count; j++)
+        {
             total += roomPrefabs[j].chance;
             if (r < total)
             {
@@ -311,7 +318,7 @@ public class LevelBuilder : MonoBehaviour
             Debug.Log("Place room");
 
         int r = GenerateRandomRoom();
-        
+
         //instantiate room
         Room currentRoom = Instantiate(roomPrefabs[r].room) as Room;
         currentRoom.transform.parent = transform;
@@ -328,16 +335,16 @@ public class LevelBuilder : MonoBehaviour
         bool roomPlaced = false;
 
         //Try available doors
-        foreach(Doorway availableDoor in allAvailableDoors)
+        foreach (Doorway availableDoor in allAvailableDoors)
         {
             //try doors in current room
-            foreach(Doorway currentDoor in currentDoors)
+            foreach (Doorway currentDoor in currentDoors)
             {
                 //position room
                 PositionAtDoorway(ref currentRoom, currentDoor, availableDoor);
                 yield return interval;      //slows down placement to allow proper overlap checking. If not here it will check before bounds have actually moved to new location
 
-                if(CheckRoomOverlap(currentRoom))
+                if (CheckRoomOverlap(currentRoom))
                 {
                     continue;
                 }
@@ -362,14 +369,14 @@ public class LevelBuilder : MonoBehaviour
             }
 
             //Exit loop if room has been placed
-            if(roomPlaced)
+            if (roomPlaced)
             {
                 break;
             }
         }
 
         //Room couldnt be placed. Restart generator and try again
-        if(!roomPlaced)
+        if (!roomPlaced)
         {
             Destroy(currentRoom.gameObject);
             ResetGenerator();
@@ -377,7 +384,7 @@ public class LevelBuilder : MonoBehaviour
     }
 
     //Resets the entire generator if room placement fails
-    public void ResetGenerator()
+    public void ResetGenerator(bool reset = true)
     {
         if (debugMode)
             Debug.LogError("Reset generation");
@@ -385,16 +392,16 @@ public class LevelBuilder : MonoBehaviour
         StopCoroutine("GenerateLevel");
 
         //Delete all rooms
-        if(startRoom)
+        if (startRoom)
         {
             Destroy(startRoom.gameObject);
         }
-        if(endRoom)
+        if (endRoom)
         {
             Destroy(endRoom.gameObject);
         }
 
-        foreach(Room room in rooms)
+        foreach (Room room in rooms)
         {
             Destroy(room.gameObject);
         }
@@ -410,13 +417,14 @@ public class LevelBuilder : MonoBehaviour
         availableDoorways.Clear();
 
         //reset
-        StartCoroutine("GenerateLevel");
+        if (reset)
+            StartCoroutine("GenerateLevel");
     }
 
     //Adds each doorway to a list
     void AddDoorwaysToList(Room room, ref List<Doorway> list)
     {
-        foreach(Doorway door in room.doorways)
+        foreach (Doorway door in room.doorways)
         {
             int r = Random.Range(0, list.Count);
             list.Insert(r, door);
@@ -453,9 +461,9 @@ public class LevelBuilder : MonoBehaviour
 
         if (colliders.Length > 0)
         {
-            foreach(Collider c in colliders)
+            foreach (Collider c in colliders)
             {
-                if(c.gameObject.transform.parent.gameObject.GetInstanceID() != room.gameObject.GetInstanceID())
+                if (c.gameObject.transform.parent.gameObject.GetInstanceID() != room.gameObject.GetInstanceID())
                 {
                     if (debugMode)
                         Debug.Log("Overlap Detected");
@@ -463,7 +471,7 @@ public class LevelBuilder : MonoBehaviour
                     return true;
                 }
             }
-            
+
         }
 
         float expansion = 0.4f;

@@ -7,10 +7,14 @@ public class SaveClass
     public int seed;
     public int level;
     private int playerHealth = 0;
+
     [SerializeField]
     private Vector3 playerPos;
+    public Vector3 PlayerPos { get { return playerPos; } }
+
     [SerializeField]
     private Quaternion playerRotation;
+    public Quaternion PlayerRotation { get { return playerRotation; } }
 
     //---------------------------------------------------------------------
     //Used to save the state of the game.
