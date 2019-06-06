@@ -22,7 +22,8 @@ public class LevelBuilderWindow : EditorWindow
             //Currently broken and only placing start room. This is likely due to the generator taking more than tick to complete
 
             levelBuilder.ClearPlayer();
-            levelBuilder.StartCoroutine(levelBuilder.GenerateLevel());
+            levelBuilder.ResetGenerator();
+           // levelBuilder.StartCoroutine(levelBuilder.GenerateLevel());
         }
 
         if (GUILayout.Button("Clear Generate"))
