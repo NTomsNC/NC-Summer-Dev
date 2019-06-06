@@ -703,11 +703,11 @@ MonoBehaviour:
   - room: {fileID: 3323123971891466748, guid: 54b02c54570435d438150f1e4bb4c171, type: 3}
     chance: 1
   - room: {fileID: 811640240639274074, guid: 81fdd85a9c64b904a84a3ca204c3dde0, type: 3}
-    chance: 2
+    chance: 1
   - room: {fileID: 8892444619055171557, guid: beda23e27f316984c9c9964890ba0ca9, type: 3}
-    chance: 15
+    chance: 1
   - room: {fileID: 7267878132693667635, guid: 53762485983ab6c4d81485ad12a7ee2e, type: 3}
-    chance: 4
+    chance: 1
   frame: {fileID: 5570704349028203052, guid: 1ce4c819b320d0d49ae649e53f0179ef, type: 3}
   playerPrefab: {fileID: 1694381953219512865, guid: dfd0299935392fa479cfc3c1f76fe348,
     type: 3}
