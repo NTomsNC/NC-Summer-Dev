@@ -9,6 +9,12 @@ public class Health : MonoBehaviour
     public float hitPoints = 15;
     public bool destroyOnDeath = false;
 
+    [Space(10)]
+    [Tooltip("This is the mesh that will be used to flash red when damaged. Optional")]
+    public GameObject mesh;
+    public float flashDuration = 0.5f;
+    public int timesFlashed = 8;
+
     float maxHitPoints;    
 
     private void Start()
@@ -29,6 +35,7 @@ public class Health : MonoBehaviour
     public bool Damage(float damage)
     {
         hitPoints -= Mathf.Abs(damage);
+        StartCoroutine(FlashRed());
 
         if (hitPoints <= 0)
             return true;
@@ -76,6 +83,23 @@ public class Health : MonoBehaviour
             }
 
             yield return new WaitForSeconds(timeBetweenDam);
+        }
+    }
+
+    IEnumerator FlashRed()
+    {
+        if (mesh != null)
+        {
+            Material mat = mesh.GetComponent<MeshRenderer>().material;
+
+            for (int i = 0; i < timesFlashed; i++)
+            {
+                mat.color = Color.red;
+                yield return new WaitForSeconds(flashDuration / timesFlashed / 2);
+                mat.color = Color.white;
+                yield return new WaitForSeconds(flashDuration / timesFlashed / 2);
+
+            }
         }
     }
 }

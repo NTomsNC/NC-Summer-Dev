@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask roomLayerMask;
 
     private LineRenderer laser;
+    public Vector3 lookAtTargetPos;
 
     private void Start()
     {
@@ -85,6 +86,16 @@ public class PlayerController : MonoBehaviour
 
         Vector3 point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
         transform.LookAt(point, Vector3.up);  //Rotates character towards point
+
+
+        //WIP
+        //lookAtTargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //if (lookAtTargetPos != Vector3.zero)
+        //{
+        //    Quaternion rot = Quaternion.LookRotation(transform.position - lookAtTargetPos, Vector3.up);
+        //    transform.rotation = rot;
+        //    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        //}
 
         CastLaser(point);
 
