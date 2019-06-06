@@ -138,7 +138,7 @@ public class LevelBuilder : MonoBehaviour
     }
 
     //Enumerator that generate the level. Primary functionality
-    IEnumerator GenerateLevel()
+    public IEnumerator GenerateLevel()
     {
         WaitForFixedUpdate interval = new WaitForFixedUpdate();
 

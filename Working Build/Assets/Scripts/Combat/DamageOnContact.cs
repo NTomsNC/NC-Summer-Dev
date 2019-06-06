@@ -6,6 +6,7 @@ public class DamageOnContact : MonoBehaviour
 {
     public float damage = 5;
     public float pushBack = 20;
+    public bool selfDamage = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class DamageOnContact : MonoBehaviour
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
 
             pHP.Damage(damage);
+            if (selfDamage) GetComponent<Health>().Damage(damage);
+
             rb.velocity += (collision.gameObject.transform.position - transform.position) * pushBack;
         }
     }

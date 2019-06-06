@@ -19,10 +19,14 @@ public class PlayerController : MonoBehaviour
     public bool grounded = false;
     public LayerMask roomLayerMask;
 
+    private LineRenderer laser;
+
     private void Start()
     {
         if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Everything");
         rb = GetComponent<Rigidbody>();
+
+        laser = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -74,12 +78,29 @@ public class PlayerController : MonoBehaviour
 
     private void FaceMouse()
     {
+        //Cast ray to mouse location to get worldspace coordinate (can redo without Raycasting)
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-
         Physics.Raycast(ray, out hit);
 
         Vector3 point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-        transform.LookAt(point, Vector3.up);
+        transform.LookAt(point, Vector3.up);  //Rotates character towards point
+
+        CastLaser(point);
+
+    }
+
+    private void CastLaser(Vector3 shootAt)
+    {
+        //Modifies line renderer to show laser from player to aimed location
+        Ray ray = new Ray(transform.position, shootAt - transform.position);
+        RaycastHit hit;
+        Physics.Raycast(ray, out hit);
+
+        Vector3[] laserPos = new Vector3[2];
+        laserPos[0] = transform.position;
+        laserPos[1] = hit.point;
+
+        laser.SetPositions(laserPos);
     }
 }

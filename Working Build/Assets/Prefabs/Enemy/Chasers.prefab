@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1609083322983299937}
   - component: {fileID: 4201705158763788779}
   m_Layer: 0
-  m_Name: EnemyTest
+  m_Name: Chasers
   m_TagString: 1x1m
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,3 +250,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   pushBack: 10
+  selfDamage: 1

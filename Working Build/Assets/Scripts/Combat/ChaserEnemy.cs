@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBase : MonoBehaviour
+public class ChaserEnemy : MonoBehaviour
 {
     GameObject target;
     RandomWalk random;
@@ -34,12 +34,14 @@ public class EnemyBase : MonoBehaviour
             //Check to see if object can see player
             Vector3 start = transform.position;
             start.y += 1;
+            Vector3 end = other.transform.position - start;
+            end.y += 0.5f;
 
-            Ray ray = new Ray(start, other.transform.position - start);
+            Ray ray = new Ray(start, end);
             RaycastHit hit;
-            Debug.DrawRay(start, other.transform.position - start);
+            Debug.DrawRay(start, end);
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))  //this always hits rooms
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {

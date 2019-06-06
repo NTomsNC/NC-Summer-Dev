@@ -773,11 +773,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: 9e934b6f5efe69d47af07e654bd06b80,
+    - target: {fileID: -6860895033569716450, guid: 9e934b6f5efe69d47af07e654bd06b80,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 21a47d910a5fedb4bba2ed75674e2cf5, type: 2}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6860895033569716450, guid: 9e934b6f5efe69d47af07e654bd06b80,
+        type: 3}
+      propertyPath: m_CookingOptions
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9e934b6f5efe69d47af07e654bd06b80,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -833,6 +838,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 9e934b6f5efe69d47af07e654bd06b80,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21a47d910a5fedb4bba2ed75674e2cf5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e934b6f5efe69d47af07e654bd06b80, type: 3}
 --- !u!64 &2401917325959270630 stripped

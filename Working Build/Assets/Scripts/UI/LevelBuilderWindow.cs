@@ -5,20 +5,22 @@ using UnityEditor;
 
 public class LevelBuilderWindow : EditorWindow
 {
+    public LevelBuilder levelBuilder;
+
     [MenuItem("Window/LevelBuilder")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(LevelBuilderWindow));
     }
 
-    public GameObject levelBuilder;
-
     private void OnGUI()
     {
-        if (GUILayout.Button("Generate Level"))
-        {
+        if (GUILayout.Button("Generate Level - WIP"))
+        {            
+            if(levelBuilder == null) levelBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
 
+            //Currently broken and only placing start room. This is likely due to the generator taking more than tick to complete
+            levelBuilder.StartCoroutine(levelBuilder.GenerateLevel());
         }
-        
     }
 }
