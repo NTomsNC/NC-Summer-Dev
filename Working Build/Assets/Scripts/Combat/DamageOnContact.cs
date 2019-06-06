@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageOnContact : MonoBehaviour
 {
     public float damage = 5;
-    public float pushBack = 2;
+    public float pushBack = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class DamageOnContact : MonoBehaviour
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
 
             pHP.Damage(damage);
-            rb.AddForce((collision.gameObject.transform.position - transform.position) * pushBack);
+            rb.velocity += (collision.gameObject.transform.position - transform.position) * pushBack;
         }
     }
 }

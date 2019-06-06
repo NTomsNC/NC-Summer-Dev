@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 {
     [Tooltip("The start HP and Maximum HP")]
     public float hitPoints = 15;
+    public bool destroyOnDeath = false;
+
     float maxHitPoints;    
 
     private void Start()
@@ -16,7 +18,11 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-
+        //Removes object on death
+        if(hitPoints < 0 && destroyOnDeath)
+        {
+            Destroy(transform.gameObject);
+        }
     }
 
     //Causes damage to hitpoints and returns if it reduces hitpoints to 0

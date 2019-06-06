@@ -29,29 +29,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         dashTimer += Time.deltaTime;
-
-        float vAxis = Input.GetAxisRaw(vInputAxis);
-        float hAxis = Input.GetAxisRaw(hInputAxis);
-
         CheckGround();
-
-        if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
-        {
-            rb.isKinematic = false;
-            Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
-            rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
-
-            if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)
-            {
-                rb.velocity = nextDir * dashSpeed;
-                dashTimer = 0;
-            }          
-        }
-        else if(dashTimer > dashWaitTime && grounded)
-        {
-            rb.isKinematic = true;
-        }
+        Move();
+        FaceMouse();
     }
 
     private void CheckGround()
@@ -67,5 +47,38 @@ public class PlayerController : MonoBehaviour
         {
             grounded = false;
         }
+    }
+
+    private void Move()
+    {
+        float vAxis = Input.GetAxisRaw(vInputAxis);
+        float hAxis = Input.GetAxisRaw(hInputAxis);
+        if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
+        {
+            //rb.isKinematic = false;
+            Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
+            rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
+
+            if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)
+            {
+                rb.velocity = nextDir * dashSpeed;
+                dashTimer = 0;
+            }
+        }
+        else if (dashTimer > dashWaitTime && grounded)
+        {
+            //rb.isKinematic = true;
+        }
+    }
+
+    private void FaceMouse()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        Physics.Raycast(ray, out hit);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(hit.point), rotationSpeed * Time.deltaTime);
     }
 }
