@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694381952107055579}
   - component: {fileID: 1694381952107055572}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1694381953219512860}
   - component: {fileID: 1995925558801112185}
   - component: {fileID: 8668390303161787322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724171687388333429}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,6 +234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
         type: 3}

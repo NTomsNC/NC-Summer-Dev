@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(transform.position, Vector3.down * rayLength);
         Debug.DrawRay(ray.origin, ray.direction * rayLength);
 
-        if(Physics.Raycast(ray, rayLength, roomLayerMask))
+        if (Physics.Raycast(ray, rayLength, roomLayerMask))
         {
             grounded = true;
         }
@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
         Physics.Raycast(ray, out hit);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(hit.point), rotationSpeed * Time.deltaTime);
+        Vector3 point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+        transform.LookAt(point, Vector3.up);
     }
 }
