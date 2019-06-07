@@ -16,5 +16,6 @@ public class CameraTrackPlayer : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x + distanceFromPlayer.x, player.transform.position.y + distanceFromPlayer.y, player.transform.position.z + distanceFromPlayer.z);
+        transform.LookAt(player.transform);
     }
 }
