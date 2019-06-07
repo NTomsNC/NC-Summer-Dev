@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask roomLayerMask;
 
     private LineRenderer laser;
-    public Vector3 lookAtTargetPos;
+    public float laserHeight = 0.5f;
 
     private void Start()
     {
@@ -79,32 +79,24 @@ public class PlayerController : MonoBehaviour
 
     private void FaceMouse()
     {
-        //Cast ray to mouse location to get worldspace coordinate (can redo without Raycasting)
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        Physics.Raycast(ray, out hit);
+        Vector3 mousePos = Input.mousePosition;
+        Vector2 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        float angle = Mathf.Atan2(mousePos.y - screenCenter.y, mousePos.x - screenCenter.x); // In rads now -Pi-Pi range    * 180 / Mathf.PI;
 
-        Vector3 point = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+        Vector3 point = new Vector3(transform.position.x + Mathf.Cos(angle), transform.position.y, transform.position.z + Mathf.Sin(angle));
         transform.LookAt(point, Vector3.up);  //Rotates character towards point
 
-
-        //WIP
-        //lookAtTargetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //if (lookAtTargetPos != Vector3.zero)
-        //{
-        //    Quaternion rot = Quaternion.LookRotation(transform.position - lookAtTargetPos, Vector3.up);
-        //    transform.rotation = rot;
-        //    transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-        //}
-
         CastLaser(point);
-
     }
 
     private void CastLaser(Vector3 shootAt)
     {
         //Modifies line renderer to show laser from player to aimed location
-        Ray ray = new Ray(transform.position, shootAt - transform.position);
+        Vector3 start = transform.position;
+        start.y += laserHeight;
+        Vector3 dir = shootAt - transform.position;
+
+        Ray ray = new Ray(start, dir);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
 
