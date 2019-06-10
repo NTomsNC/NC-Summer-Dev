@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private LineRenderer laser;
     public float laserHeight = 0.5f;
+    private Vector3 lastPos;
 
     private void Start()
     {
@@ -84,25 +85,35 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(mousePos.y - screenCenter.y, mousePos.x - screenCenter.x); // In rads now -Pi-Pi range    * 180 / Mathf.PI;
 
         Vector3 point = new Vector3(transform.position.x + Mathf.Cos(angle), transform.position.y, transform.position.z + Mathf.Sin(angle));
-        transform.LookAt(point, Vector3.up);  //Rotates character towards point
+        //transform.LookAt(point, Vector3.up);  //Rotates character towards point instantly
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(point - transform.position), rotationSpeed * Time.deltaTime); //This allows for different speeds
 
-        CastLaser(point);
+        CastLaserForward();
     }
 
-    private void CastLaser(Vector3 shootAt)
+    private void CastLaserForward()
     {
         //Modifies line renderer to show laser from player to aimed location
         Vector3 start = transform.position;
         start.y += laserHeight;
-        Vector3 dir = shootAt - transform.position;
+        Vector3 dir = transform.forward;
 
         Ray ray = new Ray(start, dir);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
 
+        Debug.DrawRay(start, dir, Color.blue);
+
         Vector3[] laserPos = new Vector3[2];
-        laserPos[0] = transform.position;
+        laserPos[0] = transform.position + new Vector3(0, laserHeight, 0);
         laserPos[1] = hit.point;
+
+        if (hit.collider == null)
+        {
+            laserPos[1] = start + dir * 10;
+        }
+
+        lastPos = laserPos[1];  
 
         laser.SetPositions(laserPos);
     }

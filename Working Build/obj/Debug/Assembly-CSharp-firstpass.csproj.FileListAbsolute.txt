@@ -682,3 +682,7 @@ D:\Users\Nathe\OneDrive\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\A
 D:\Users\Nathe\OneDrive\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.csproj.CopyComplete
 D:\Users\Nathe\OneDrive\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.dll
 D:\Users\Nathe\OneDrive\Documents\GitHub\NC-Summer-Dev\Working Build\obj\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Editor.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Runtime.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Runtime.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Editor.pdb

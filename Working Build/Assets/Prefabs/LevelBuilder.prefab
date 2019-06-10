@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303f959c8e71bf4b99aa932a84cc2a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  navmesh: {fileID: 0}
+  navmesh: {fileID: 1102112571014026530, guid: aefb0c08775fbea42a7292cdd9b52342, type: 3}
   startRoomPrefab: {fileID: 8901909776818292098, guid: 9007ff8c247c12e4581916ead75a2737,
     type: 3}
   endRoomPrefab: {fileID: 996133676259734903, guid: c08c10178940337489d8bcf397685cb5,

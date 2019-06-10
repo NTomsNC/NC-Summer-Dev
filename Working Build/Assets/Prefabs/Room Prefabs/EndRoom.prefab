@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a26aa306c8a9ebb4aa8b242657b5934d, type: 2}
+  - {fileID: 2100000, guid: c443448665d7c9b45a8f98112a9e0baf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b2bc54475c0e8428e74e20a9965ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelBuilder: {fileID: 0}
 --- !u!1 &8832095684566986339
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,4 +532,7 @@ MonoBehaviour:
   - {fileID: 8826226787613617895}
   - {fileID: 5274171858753230327}
   meshCollider: {fileID: 3622530041242076497}
-  objectPrefabs: []
+  randomizeObjectPlacement: 0
+  objectPrefabs1x1m: []
+  objectPrefabs2x2m: []
+  objectPrefabs3x3m: []

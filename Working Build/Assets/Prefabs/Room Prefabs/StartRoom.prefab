@@ -125,7 +125,10 @@ MonoBehaviour:
   - {fileID: 3098871218617249272}
   - {fileID: 3353393373445463633}
   meshCollider: {fileID: 1743616734000457794}
-  objectPrefabs: []
+  randomizeObjectPlacement: 0
+  objectPrefabs1x1m: []
+  objectPrefabs2x2m: []
+  objectPrefabs3x3m: []
 --- !u!1 &4106058550902989734
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +444,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a26aa306c8a9ebb4aa8b242657b5934d, type: 2}
+  - {fileID: 2100000, guid: c443448665d7c9b45a8f98112a9e0baf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

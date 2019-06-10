@@ -141,13 +141,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayLength: 0.5
   moveSpeed: 5
-  rotationSpeed: 15
+  rotationSpeed: 10
   dashSpeed: 15
   dashWaitTime: 0.3
   grounded: 0
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  laserHeight: 0.5
 --- !u!54 &1694381953219512860
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -329,6 +330,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1724171687388333429}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
+        type: 3}
+      propertyPath: m_Name
+      value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -389,21 +400,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.20803304
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
-        type: 3}
-      propertyPath: m_Name
-      value: character
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -6860895033569716450, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 0e3099ad29715e44a9b0e0a6b785adb4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: db4f3675cd05ad646b73e92cac8f43fe, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e3099ad29715e44a9b0e0a6b785adb4, type: 3}
 --- !u!1 &6959692894521179445 stripped

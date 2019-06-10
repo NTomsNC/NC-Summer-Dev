@@ -41,7 +41,7 @@ public class ChaserEnemy : MonoBehaviour
             RaycastHit hit;
             Debug.DrawRay(start, end);
 
-            if (Physics.Raycast(ray, out hit))  //this always hits rooms
+            if (Physics.Raycast(ray, out hit)) 
             {
                 if (hit.collider.gameObject.tag == "Player")
                 {
