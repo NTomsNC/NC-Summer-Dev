@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class Health : MonoBehaviour
@@ -8,6 +9,7 @@ public class Health : MonoBehaviour
     [Tooltip("The start HP and Maximum HP")]
     public float hitPoints = 15;
     public bool destroyOnDeath = false;
+    public bool removeDataOnDeath = false;
 
     [Space(10)]
     [Tooltip("This is the mesh that will be used to flash red when damaged. Optional")]
@@ -25,9 +27,22 @@ public class Health : MonoBehaviour
     private void Update()
     {
         //Removes object on death
-        if(hitPoints < 0 && destroyOnDeath)
+        if(hitPoints <= 0 && destroyOnDeath)
         {
             Destroy(transform.gameObject);
+        }
+        else if(hitPoints <= 0 && removeDataOnDeath)
+        {
+            LevelBuilder lvlBuilder = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>();
+            SaveClass.DeleteSave(lvlBuilder.currentSave);
+
+            int numberOfSaves = PlayerPrefs.GetInt("SaveCount", 0);
+            numberOfSaves--;
+            PlayerPrefs.SetInt("SaveCount", numberOfSaves);
+            PlayerPrefs.Save();
+
+
+            SceneManager.LoadScene(1);
         }
     }
 

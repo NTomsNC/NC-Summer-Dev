@@ -13,7 +13,7 @@ public class NextLevel : MonoBehaviour
             //Sets up data in preperation to save
             saveGame = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().saveGame;  //Grab savegame from levelbuilder
             currentSave = GameObject.FindGameObjectWithTag("LevelBuilder").GetComponent<LevelBuilder>().currentSave;    //Grab the saveID number
-            int seed = (int)System.Math.Abs(System.DateTime.Now.Ticks);
+            int seed = SaveClass.GetSeed();
 
             //Creates a new transform and sets the player transform so player spawns properly in next level
             Transform pTransform = new GameObject().transform; 

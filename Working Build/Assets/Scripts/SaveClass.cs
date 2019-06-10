@@ -8,11 +8,9 @@ public class SaveClass
     public int level;
     private int playerHealth = 0;
 
-    [SerializeField]
     private Vector3 playerPos;
     public Vector3 PlayerPos { get { return playerPos; } }
 
-    [SerializeField]
     private Quaternion playerRotation;
     public Quaternion PlayerRotation { get { return playerRotation; } }
 
@@ -64,7 +62,7 @@ public class SaveClass
     public void ResetAll(int saveNum)
     {
         level = 1;
-        seed = (int)System.Math.Abs(System.DateTime.Now.Ticks);
+        seed = GetSeed();
 
         Vector3 tempVector = new Vector3(0, 1, 0);
 
@@ -99,5 +97,13 @@ public class SaveClass
     {
         PlayerPrefs.SetInt("CurrentSave", saveNum);
         PlayerPrefs.Save();
+    }
+    
+    //---------------------------------------------------------------------
+    //Returns a new seed
+    static public int GetSeed()
+    {
+        System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
+        return (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
     }
 }

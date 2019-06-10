@@ -19,6 +19,7 @@ public class SaveData : MonoBehaviour
     static public int loadSceneID = 0;
 
     public int saveDataID;
+    public int saveArrayPos;
     public GameObject txtName;
 
     // Called on Start
@@ -43,7 +44,7 @@ public class SaveData : MonoBehaviour
     // Called but the Delete btn
     public void RemoveSave()
     {
-        MenuController.Instance.RemoveSaveState(saveDataID);
+        MenuController.Instance.RemoveSaveState(saveArrayPos);
 
         //This deletes the data involved with the save
         SaveClass.DeleteSave(saveDataID);

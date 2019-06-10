@@ -19,6 +19,7 @@ using UnityEngine.SceneManagement;
 // LoadPlayerData() -> Called by LoadScene_Game(), it initializes PlayerPrefs
 // RemoveSaveState() -> Removes a save state and repositions the remaining save states correctly
 
+[System.Serializable]
 public class MenuController : MonoBehaviour
 {
     // Game State
@@ -37,6 +38,8 @@ public class MenuController : MonoBehaviour
     [Header("Save States ------------------------------------------------")]
     public GameObject SaveStatePrefab;
     public int numberOfSaves = 0;
+    [SerializeField]
+    List<int> numbers;
 
     private List<GameObject> SaveStates = new List<GameObject>();
 
@@ -60,6 +63,19 @@ public class MenuController : MonoBehaviour
 
         //Gets amount of saves
         numberOfSaves = PlayerPrefs.GetInt("SaveCount", 0);
+
+        //numbers = JsonUtility.FromJson<List<int>>(PlayerPrefs.GetString("SaveNumbers"));
+
+        //sets blank data
+        if (numbers.Count == 0)
+        {
+            for (int i = 0; i < numberOfSaves; i++)
+            {
+                numbers.Add(i);
+            }
+        }
+
+        SaveAll();
     }
     #endregion
 
@@ -108,7 +124,8 @@ public class MenuController : MonoBehaviour
             GameObject newSaveState;
 
             newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0), Quaternion.identity, playerSavesCanvas.transform);
-            newSaveState.GetComponent<SaveData>().saveDataID = i;
+            newSaveState.GetComponent<SaveData>().saveDataID = numbers[i];
+            SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
 
             SaveStates.Add(newSaveState);
         }
@@ -139,18 +156,19 @@ public class MenuController : MonoBehaviour
     {
         // To do, Remove 
         Destroy(SaveStates[index]);
-
         SaveStates.RemoveAt(index);
 
         //Decreases and saves save count
         numberOfSaves--;
-        PlayerPrefs.SetInt("SaveCount", numberOfSaves);
-        PlayerPrefs.Save();
+
+        numbers.Remove(numbers[index]);
+        SaveAll();
 
         for (int i = 0; i < SaveStates.Count; i++)
         {
             SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
-            SaveStates[i].GetComponent<SaveData>().saveDataID = i;
+            SaveStates[i].GetComponent<SaveData>().saveDataID = numbers[i];
+            SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
         }
     }
 
@@ -159,15 +177,32 @@ public class MenuController : MonoBehaviour
     {
         //Increases and saves save count
         numberOfSaves++;
-        PlayerPrefs.SetInt("SaveCount", numberOfSaves);
-        PlayerPrefs.Save();
-        
+
+        //Create a new matching save
+        SaveClass save = new SaveClass();
+        save.ResetAll(numberOfSaves);
+        numbers.Add(numberOfSaves);
+
         SaveStates.Add(GameObject.Instantiate(SaveStatePrefab, Vector3.zero, Quaternion.identity, playerSavesCanvas.transform));
     
         for (int i = 0; i < SaveStates.Count; i++)
         {
             SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
-            SaveStates[i].GetComponent<SaveData>().saveDataID = i;
+            SaveStates[i].GetComponent<SaveData>().saveDataID = numbers[i];
+            SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
         }
+        SaveAll();
+    }
+
+    //Saves all needed data
+    private void SaveAll()
+    {
+        //save numbers
+        string temp = JsonUtility.ToJson(numbers);
+        PlayerPrefs.SetString("SaveNumbers", JsonUtility.ToJson(numbers));
+
+        //number of saves - will be phased out
+        PlayerPrefs.SetInt("SaveCount", numberOfSaves);
+        PlayerPrefs.Save();
     }
 }

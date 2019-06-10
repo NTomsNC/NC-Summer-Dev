@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private string hInputAxis = "Horizontal";
     private Rigidbody rb;
 
-    public bool grounded = false;
+    private bool grounded = false;
     public LayerMask roomLayerMask;
 
     private LineRenderer laser;
