@@ -240,6 +240,6 @@ public class RoomBuilderWindow : EditorWindow
     /// <param name="go"></param>
     private void Nudge(GameObject go)
     {
-        go.transform.position += (0.0001f * go.transform.forward);
+        go.transform.position += (0.001f * go.transform.forward);
     }
 }
