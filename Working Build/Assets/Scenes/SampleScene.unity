@@ -335,6 +335,7 @@ MonoBehaviour:
   SettingsCanvas: {fileID: 0}
   SaveStatePrefab: {fileID: 0}
   numberOfSaves: 0
+  numbers: 
 --- !u!4 &255714888
 Transform:
   m_ObjectHideFlags: 0
