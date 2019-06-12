@@ -38,10 +38,9 @@ public class MenuController : MonoBehaviour
     [Header("Save States ------------------------------------------------")]
     public GameObject SaveStatePrefab;
     public int numberOfSaves = 0;
-    [SerializeField]
-    List<int> numbers;
 
     private List<GameObject> SaveStates = new List<GameObject>();
+    private ListWrapper saveStateInfo = new ListWrapper();
 
     // Singleton (Awake)
     #region Singleton Pattern
@@ -64,14 +63,14 @@ public class MenuController : MonoBehaviour
         //Gets amount of saves
         numberOfSaves = PlayerPrefs.GetInt("SaveCount", 0);
 
-        //numbers = JsonUtility.FromJson<List<int>>(PlayerPrefs.GetString("SaveNumbers"));
+        saveStateInfo = JsonUtility.FromJson<ListWrapper>(PlayerPrefs.GetString("SaveNumbers"));
 
         //sets blank data
-        if (numbers.Count == 0)
+        if (saveStateInfo.numbers.Count == 0)
         {
             for (int i = 0; i < numberOfSaves; i++)
             {
-                numbers.Add(i);
+                saveStateInfo.numbers.Add(i);
             }
         }
 
@@ -124,8 +123,8 @@ public class MenuController : MonoBehaviour
             GameObject newSaveState;
 
             newSaveState = GameObject.Instantiate(SaveStatePrefab, new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0), Quaternion.identity, playerSavesCanvas.transform);
-            newSaveState.GetComponent<SaveData>().saveDataID = numbers[i];
-            SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
+            newSaveState.GetComponent<SaveData>().saveDataID = saveStateInfo.numbers[i];
+            newSaveState.GetComponent<SaveData>().saveArrayPos = i;
 
             SaveStates.Add(newSaveState);
         }
@@ -161,13 +160,13 @@ public class MenuController : MonoBehaviour
         //Decreases and saves save count
         numberOfSaves--;
 
-        numbers.Remove(numbers[index]);
+        saveStateInfo.numbers.Remove(saveStateInfo.numbers[index]);
         SaveAll();
 
         for (int i = 0; i < SaveStates.Count; i++)
         {
             SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
-            SaveStates[i].GetComponent<SaveData>().saveDataID = numbers[i];
+            SaveStates[i].GetComponent<SaveData>().saveDataID = saveStateInfo.numbers[i];
             SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
         }
     }
@@ -180,15 +179,22 @@ public class MenuController : MonoBehaviour
 
         //Create a new matching save
         SaveClass save = new SaveClass();
-        save.ResetAll(numberOfSaves);
-        numbers.Add(numberOfSaves);
+        int temp = 0;
+
+        if (saveStateInfo.numbers.Count > 0)
+        {
+            temp = saveStateInfo.numbers[saveStateInfo.numbers.Count - 1] + 1; //gets the value of the last save and increments one. This helps prevent repeating numbers or overwrites if some numbers were deleted
+        }
+        
+        save.ResetAll(temp);
+        saveStateInfo.numbers.Add(temp);
 
         SaveStates.Add(GameObject.Instantiate(SaveStatePrefab, Vector3.zero, Quaternion.identity, playerSavesCanvas.transform));
     
         for (int i = 0; i < SaveStates.Count; i++)
         {
             SaveStates[i].transform.position = new Vector3(playerSavesCanvas.transform.position.x, playerSavesCanvas.transform.position.y - (120 * i), 0);
-            SaveStates[i].GetComponent<SaveData>().saveDataID = numbers[i];
+            SaveStates[i].GetComponent<SaveData>().saveDataID = saveStateInfo.numbers[i];
             SaveStates[i].GetComponent<SaveData>().saveArrayPos = i;
         }
         SaveAll();
@@ -198,11 +204,18 @@ public class MenuController : MonoBehaviour
     private void SaveAll()
     {
         //save numbers
-        string temp = JsonUtility.ToJson(numbers);
-        PlayerPrefs.SetString("SaveNumbers", JsonUtility.ToJson(numbers));
+        string temp = JsonUtility.ToJson(saveStateInfo);
+        PlayerPrefs.SetString("SaveNumbers", temp);
 
         //number of saves - will be phased out
         PlayerPrefs.SetInt("SaveCount", numberOfSaves);
         PlayerPrefs.Save();
     }
+}
+
+[System.Serializable]
+public class ListWrapper
+{
+    [SerializeField]
+    public List<int> numbers = new List<int>();
 }
