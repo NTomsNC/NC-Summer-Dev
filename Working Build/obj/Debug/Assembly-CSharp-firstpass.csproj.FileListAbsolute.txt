@@ -686,3 +686,7 @@ C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.ProBuilder.AssetIdRemapUtility.dll
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.ProBuilder.AssetIdRemapUtility.pdb
 C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.ProBuilder.AddOns.Editor.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Editor.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Runtime.dll
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Runtime.pdb
+C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build\Temp\bin\Debug\Unity.RenderPipelines.Lightweight.Editor.pdb
