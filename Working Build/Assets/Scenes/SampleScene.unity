@@ -1024,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 3339636153474746077, guid: 9cd630fc4b6cfc94283c8ddefc12cb98,
         type: 3}
       propertyPath: roomPrefabs.Array.data[8].chance
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cd630fc4b6cfc94283c8ddefc12cb98, type: 3}

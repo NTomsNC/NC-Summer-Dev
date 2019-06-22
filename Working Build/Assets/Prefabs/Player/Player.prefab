@@ -307,7 +307,7 @@ MonoBehaviour:
   collisionCenter: {x: 0, y: 0, z: 0}
   layers:
     serializedVersion: 2
-    m_Bits: 819
+    m_Bits: 0
   radius: 0.1
   spherePrefab: {fileID: 3669249364072368603, guid: 14234ea59daa3964696bf3cef4e51aa2,
     type: 3}

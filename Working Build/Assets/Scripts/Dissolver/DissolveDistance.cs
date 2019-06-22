@@ -8,9 +8,10 @@ public class DissolveDistance : MonoBehaviour
 {
     [Tooltip("The distance in meters that material will start to dissolve.")]
     public float startDissolveDistance = 1;
+    public float distance;
 
-    private GameObject sphere;
     private Renderer rend;
+    public Ray visionRay;
 
     // Start is called before the first frame update
     void Start()
@@ -18,28 +19,23 @@ public class DissolveDistance : MonoBehaviour
         rend = GetComponent<MeshRenderer>();
         rend.material.shader = Shader.Find("Custom/Dissolve");
         rend.material.SetFloat("_Dissolve", 1);
-
-        sphere = GameObject.FindGameObjectWithTag("VisibilitySphere");
     }
 
     // Update is called once per frame
     void Update()
     {
-        sphere = GameObject.FindGameObjectWithTag("VisibilitySphere");
+        visionRay = GameObject.FindGameObjectWithTag("Player").GetComponent<VisibilitySphere>().visionRay;
 
-        if (sphere != null)
-        {            
-            Vector3 p1 = sphere.GetComponent<SphereCollider>().bounds.ClosestPoint(transform.position);
-            Vector3 p2 = GetComponent<MeshCollider>().bounds.ClosestPoint(sphere.transform.position);
+        Dissolve();
+    }
 
-            float distance = Vector3.Distance(p1, p2);
+    private void Dissolve()
+    {
+        distance = Vector3.Cross(visionRay.direction, transform.position - visionRay.origin).magnitude;
 
-            {
-                float dissolve = distance / startDissolveDistance;
-                if (dissolve > 1) dissolve = 1;
+        float dissolve = distance / startDissolveDistance;
+        if (dissolve > 1) dissolve = 1;
 
-                rend.material.SetFloat("_Dissolve", dissolve);
-            }
-        }
+        rend.material.SetFloat("_Dissolve", dissolve);
     }
 }

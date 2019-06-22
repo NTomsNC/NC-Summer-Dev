@@ -136,4 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013da4cd99f3bf9489edfe57530cfc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDissolveDistance: 3
+  startDissolveDistance: 2
+  distance: 0
