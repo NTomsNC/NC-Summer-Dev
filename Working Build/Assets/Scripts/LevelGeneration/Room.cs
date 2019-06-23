@@ -26,10 +26,13 @@ public class Room : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Draw Bounds
-        Bounds bounds = new Bounds(RoomBounds.center, RoomBounds.size);
-        bounds.Expand(-0.4f);
-        Gizmos.DrawWireCube(bounds.center, bounds.size);
-
+        if (meshCollider != null)
+        {
+            Bounds bounds = new Bounds(RoomBounds.center, RoomBounds.size);
+            bounds.Expand(-0.4f);
+            Gizmos.DrawWireCube(bounds.center, bounds.size);
+        }
+      
         ////Displays most points for collision
         //float expansion = 0.4f;
         //Vector3 pt1 = new Vector3(RoomBounds.center.x - (RoomBounds.extents.x - expansion), RoomBounds.center.y + (RoomBounds.extents.y - expansion), RoomBounds.center.z - (RoomBounds.extents.z - expansion));

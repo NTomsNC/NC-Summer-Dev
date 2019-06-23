@@ -13,11 +13,13 @@ public class RoomBuilderWindow : EditorWindow
 
     bool bShowOptions = false;
     bool bActiveRoom = false;
+    bool bShowPath = false;
 
     Object roomMesh = null;
     Object doorMesh = null;
 
     string roomName = "NewRoom";
+    string path = "Assets/Prefabs/Room Prefabs/";
 
     /// <summary>
     /// Calls the Room Builder Window
@@ -70,6 +72,7 @@ public class RoomBuilderWindow : EditorWindow
             if (room == null)
             {
                 root_MainRoomGO.AddComponent<Room>();
+                root_MainRoomGO.GetComponent<Room>().meshCollider = new MeshCollider();
             }
 
             bShowOptions = true;
@@ -89,7 +92,11 @@ public class RoomBuilderWindow : EditorWindow
         roomMesh = EditorGUILayout.ObjectField(roomMesh, typeof(GameObject), true);
         EditorGUILayout.EndHorizontal();
 
-        if (roomMesh != null)
+        if (roomMesh == null)
+        {
+            GUILayout.Label("\nThe current room is lacking any geometry, It's recommended \nthat you add some kind of geometry to build and position your \ndoors off of");
+        }
+        else
         {
             roomMesh.name = "RoomMesh";
 
@@ -124,6 +131,7 @@ public class RoomBuilderWindow : EditorWindow
         GUILayout.Label("Generate Doors");
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Door Mesh");
+
         doorMesh = EditorGUILayout.ObjectField(doorMesh, typeof(GameObject), true);
         EditorGUILayout.EndHorizontal();
 
@@ -156,12 +164,27 @@ public class RoomBuilderWindow : EditorWindow
                 {
                     root_MainRoomGO.GetComponent<Room>().doorways[i] = activeDoors[i].GetComponent<Doorway>();
                 }
-                
+
             }
             else
             {
-                activeDoors.Add(new GameObject());
+                GameObject d = new GameObject();
+
+                Doorway doorway = d.GetComponent<Doorway>();
+
+                if (doorway == null)
+                    d.AddComponent<Doorway>();
+
+                activeDoors.Add(d);
+
+                root_MainRoomGO.GetComponent<Room>().doorways = new Doorway[activeDoors.Count];
+
+                for (int i = 0; i < activeDoors.Count; i++)
+                {
+                    root_MainRoomGO.GetComponent<Room>().doorways[i] = activeDoors[i].GetComponent<Doorway>();
+                }
             }
+
             activeDoors[activeDoors.Count - 1].name = "Door " + activeDoors.Count;
             activeDoors[activeDoors.Count - 1].transform.parent = doorRoot.transform;
         }
@@ -186,6 +209,12 @@ public class RoomBuilderWindow : EditorWindow
                 Selection.activeObject = activeDoors[i];
             }
 
+            if (GUILayout.Button("X", GUILayout.Width(30)))
+            {
+                DestroyImmediate(activeDoors[i]);
+                activeDoors.RemoveAt(i);
+            }
+
             EditorGUILayout.EndHorizontal();
         }
     }
@@ -195,13 +224,38 @@ public class RoomBuilderWindow : EditorWindow
     /// </summary>
     private void GeneratePreFabSave()
     {
-        GUILayout.Space(5);
+        GUILayout.Space(10);
         GUILayout.Label("Save");
         roomName = GUILayout.TextArea(roomName);
+
+        if (bShowPath)
+        {
+            path = GUILayout.TextArea(path);
+        }
+
+        EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Save"))
         {
-            PrefabUtility.SaveAsPrefabAsset(roomRoot, "Assets/" + "Prefabs/" + roomName + ".prefab");
+            string localPath = path + roomName + ".prefab";
+            if (AssetDatabase.LoadAssetAtPath(localPath, typeof(GameObject)))
+            {
+                if (EditorUtility.DisplayDialog("Are you sure?", "The Prefab " + localPath + " already exists. Do you want to overwrite it?", "Yes", "No"))
+                {
+                    PrefabUtility.SaveAsPrefabAsset(root_MainRoomGO, localPath);
+                }
+            }
+            else
+            {
+                PrefabUtility.SaveAsPrefabAsset(root_MainRoomGO, localPath);
+            }
         }
+
+        if (GUILayout.Button("Path", GUILayout.Width(50)))
+        {
+            bShowPath = !bShowPath;
+        }
+
+        EditorGUILayout.EndHorizontal();
     }
     #endregion
 
