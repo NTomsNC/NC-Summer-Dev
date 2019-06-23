@@ -105,7 +105,6 @@ GameObject:
   - component: {fileID: 1995925558801112185}
   - component: {fileID: 8668390303161787322}
   - component: {fileID: 6948232358603528308}
-  - component: {fileID: 8695507055569593156}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -292,26 +291,6 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8695507055569593156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1694381953219512865}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9740239cb24522f4bba75169f1b4ef11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionCenter: {x: 0, y: 0, z: 0}
-  layers:
-    serializedVersion: 2
-    m_Bits: 0
-  radius: 0.1
-  spherePrefab: {fileID: 3669249364072368603, guid: 14234ea59daa3964696bf3cef4e51aa2,
-    type: 3}
-  speed: 10
 --- !u!1 &2805259322490108778
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,14 +66,14 @@
     <Compile Include="Assets\Scripts\Combat\ChaserEnemy.cs" />
     <Compile Include="Assets\Scripts\Combat\DamageOnContact.cs" />
     <Compile Include="Assets\Scripts\Combat\Health.cs" />
-    <Compile Include="Assets\Scripts\Dissolver\DissolveDistance.cs" />
-    <Compile Include="Assets\Scripts\Dissolver\VisibilitySphere.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\Doorway.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\EndRoom.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\LevelBuilder.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\NextLevel.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\Room.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\StartRoom.cs" />
+    <Compile Include="Assets\Scripts\OBSOLETE\Dissolver\DissolveDistance.cs" />
+    <Compile Include="Assets\Scripts\OBSOLETE\Dissolver\VisibilitySphere.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RoomBuilderWindow.cs" />
     <Compile Include="Assets\Scripts\SaveClass.cs" />

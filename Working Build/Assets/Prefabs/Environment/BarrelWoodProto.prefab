@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 320602008452449365}
   - component: {fileID: 5435547062158459289}
   - component: {fileID: -6153400276839674349}
-  - component: {fileID: -6084264928547766708}
   m_Layer: 0
   m_Name: BarrelWoodProto
   m_TagString: Untagged
@@ -119,22 +118,8 @@ MeshCollider:
   m_GameObject: {fileID: 5209951111050352649}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: -7665248404301432626, guid: f42921ebfb9c9704a8a9a250bea8b54e, type: 3}
---- !u!114 &-6084264928547766708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5209951111050352649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 013da4cd99f3bf9489edfe57530cfc59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startDissolveDistance: 1.5
-  distance: 0
