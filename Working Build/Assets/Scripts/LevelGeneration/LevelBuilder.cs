@@ -60,6 +60,9 @@ public class LevelBuilder : MonoBehaviour
 
     private void Start()
     {
+        //Setting time scale to 1 just in case
+        Time.timeScale = 1;
+
         if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Rooms");
 
         //Loading saveGame.level status

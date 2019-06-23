@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\SaveClass.cs" />
     <Compile Include="Assets\Scripts\UI\LevelBuilderWindow.cs" />
     <Compile Include="Assets\Scripts\UI\MenuController.cs" />
+    <Compile Include="Assets\Scripts\UI\PauseMenuController.cs" />
     <Compile Include="Assets\Scripts\UI\SaveData.cs" />
     <None Include="Assets\NavMeshComponents-master\ProjectSettings\ProjectVersion.txt" />
     <Reference Include="Unity.Timeline.Editor">

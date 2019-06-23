@@ -14,7 +14,7 @@ TagManager:
   - Door
   - Room
   - Hallway
-  - VisibilitySphere
+  - GameplayItem
   layers:
   - Default
   - TransparentFX

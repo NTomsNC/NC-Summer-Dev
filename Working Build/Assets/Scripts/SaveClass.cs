@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class SaveClass
@@ -106,4 +107,13 @@ public class SaveClass
         System.DateTime epochStart = new System.DateTime(1970, 1, 1, 0, 0, 0, System.DateTimeKind.Utc);
         return (int)(System.DateTime.UtcNow - epochStart).TotalSeconds;
     }
+}
+
+[System.Serializable]
+public class EnemyWrapper
+{
+    public List<Health> hp = new List<Health>();
+    public List<Vector3> pos = new List<Vector3>();
+    public List<Vector3> rot = new List<Vector3>();
+
 }

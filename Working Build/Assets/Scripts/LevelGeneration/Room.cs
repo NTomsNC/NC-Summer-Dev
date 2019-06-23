@@ -11,10 +11,12 @@ public class Room : MonoBehaviour
     public GameObject[] objectPrefabs1x1m;
     public GameObject[] objectPrefabs2x2m;
     public GameObject[] objectPrefabs3x3m;
+    public GameObject[] gameplayPrefabs;
 
     private List<GameObject> objects1x1m = new List<GameObject>();
     private List<GameObject> objects2x2m = new List<GameObject>();
     private List<GameObject> objects3x3m = new List<GameObject>();
+    private List<GameObject> gameObjects = new List<GameObject>();
 
     public Bounds RoomBounds
     {
@@ -48,7 +50,7 @@ public class Room : MonoBehaviour
     {
         GetChildObjects(transform);
 
-        if (objects1x1m.Count > 0)
+        if (objects1x1m.Count > 0 || objects2x2m.Count > 0 || objects3x3m.Count > 0 || gameObjects.Count > 0)
         {
             PlaceItems();
         }
@@ -74,6 +76,11 @@ public class Room : MonoBehaviour
                 objects3x3m.Add(child.gameObject);
                 child.gameObject.SetActive(false);
             }
+            else if(child.tag == "GameplayItem")
+            {
+                gameObjects.Add(child.gameObject);
+                child.gameObject.SetActive(false);
+            }
             if (child.childCount > 0)
             {
                 GetChildObjects(child.transform);
@@ -83,6 +90,7 @@ public class Room : MonoBehaviour
 
     private void PlaceItems()
     {
+        //Temp is a 1 if randomize if off, 2 if on.
         int temp = randomizeObjectPlacement ? 2 : 1;
 
         if (objectPrefabs1x1m.Length > 0)
@@ -129,6 +137,25 @@ public class Room : MonoBehaviour
                     GameObject obj = Instantiate(objectPrefabs3x3m[random]);
                     obj.transform.parent = transform;
                     obj.transform.position = o.transform.position;
+                    //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
+                }
+            }
+        }
+
+        //Place gameplay items in gameplay spots
+        if (gameplayPrefabs.Length > 0)
+        {
+            foreach (GameObject go in gameObjects)
+            {
+                //Will randomly choose between 0 and temp. Temp is a 1 if randomize if off, 2 if on.
+                if (Random.Range(0, temp) == 0)
+                {
+                    int random = Random.Range(0, gameplayPrefabs.Length);
+
+                    //Spawn object
+                    GameObject obj = Instantiate(gameplayPrefabs[random]);
+                    obj.transform.parent = transform;
+                    obj.transform.position = go.transform.position;
                     //obj.transform.Rotate(Vector3.up, Random.Range(0, 360));
                 }
             }

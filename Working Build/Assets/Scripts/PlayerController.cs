@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public float laserHeight = 0.5f;
     private Vector3 lastPos;
 
+    public bool disableControl = false;
+
     private void Start()
     {
         if (roomLayerMask == 0) roomLayerMask = LayerMask.GetMask("Everything");
@@ -57,36 +59,38 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        float vAxis = Input.GetAxisRaw(vInputAxis);
-        float hAxis = Input.GetAxisRaw(hInputAxis);
-        if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
+        if (!disableControl)
         {
-            //rb.isKinematic = false;
-            Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-            //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
-            rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
-
-            if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)
+            float vAxis = Input.GetAxisRaw(vInputAxis);
+            float hAxis = Input.GetAxisRaw(hInputAxis);
+            if ((Input.GetButton(vInputAxis) || Input.GetButton(hInputAxis)) && dashTimer > dashWaitTime && grounded)
             {
-                rb.velocity = nextDir * dashSpeed;
-                dashTimer = 0;
+                //rb.isKinematic = false;
+                Vector3 nextDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+                //transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(nextDir), rotationSpeed * Time.deltaTime);
+                rb.velocity = new Vector3(nextDir.x * moveSpeed, rb.velocity.y, nextDir.z * moveSpeed);
+
+                if (Input.GetButtonDown("Dash") && dashTimer > dashWaitTime)
+                {
+                    rb.velocity = nextDir * dashSpeed;
+                    dashTimer = 0;
+                }
             }
-        }
-        else if (dashTimer > dashWaitTime && grounded)
-        {
-            //rb.isKinematic = true;
         }
     }
 
     private void FaceMouse()
     {
-        Vector3 mousePos = Input.mousePosition;
-        Vector2 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-        float angle = Mathf.Atan2(mousePos.y - screenCenter.y, mousePos.x - screenCenter.x); // In rads now -Pi-Pi range    * 180 / Mathf.PI;
+        if (!disableControl)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            Vector2 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+            float angle = Mathf.Atan2(mousePos.y - screenCenter.y, mousePos.x - screenCenter.x); // In rads now -Pi-Pi range    * 180 / Mathf.PI;
 
-        Vector3 point = new Vector3(transform.position.x + Mathf.Cos(angle), transform.position.y, transform.position.z + Mathf.Sin(angle));
-        //transform.LookAt(point, Vector3.up);  //Rotates character towards point instantly
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(point - transform.position), rotationSpeed * Time.deltaTime); //This allows for different speeds
+            Vector3 point = new Vector3(transform.position.x + Mathf.Cos(angle), transform.position.y, transform.position.z + Mathf.Sin(angle));
+            //transform.LookAt(point, Vector3.up);  //Rotates character towards point instantly
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(point - transform.position), rotationSpeed * Time.deltaTime); //This allows for different speeds
+        }
 
         CastLaserForward();
     }
@@ -113,7 +117,7 @@ public class PlayerController : MonoBehaviour
             laserPos[1] = start + dir * 10;
         }
 
-        lastPos = laserPos[1];  
+        lastPos = laserPos[1];
 
         laser.SetPositions(laserPos);
     }
