@@ -240,10 +240,10 @@ MonoBehaviour:
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  - {fileID: 15}
   - {fileID: 19}
+  - {fileID: 15}
   m_Selected: 0
-  m_LastSelected: 3
+  m_LastSelected: 2
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -399,7 +399,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 8cf5ffff
-      m_LastClickedID: -2676
-      m_ExpandedIDs: 92f5ffffd0f6ffffd6f6ffff8cfbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 368efeff748ffeff7a8ffeff76b2feff88ddfeffc6defeffccdefeffc02cffff382dffff7c2effff7455ffff627affffa07bffffa67bffff8cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -522,9 +522,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -2.1453164, y: -5.58571, z: 4.876094}
+    m_Target: {x: -28.782764, y: -4.35497, z: 2.1077433}
     speed: 2
-    m_Value: {x: -2.1453164, y: -5.58571, z: 4.876094}
+    m_Value: {x: -28.782764, y: -4.35497, z: 2.1077433}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -553,13 +553,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.25785458, y: -0.74110866, z: 0.44075036, w: -0.4363421}
+    m_Target: {x: 0.08789746, y: -0.80204874, z: 0.11944599, w: 0.5789526}
     speed: 2
-    m_Value: {x: -0.25912562, y: -0.73965347, z: 0.43988988, w: -0.43847877}
+    m_Value: {x: 0.087540455, y: -0.79942864, z: 0.11782238, w: 0.5825534}
   m_Size:
-    m_Target: 22
+    m_Target: 25.105654
     speed: 2
-    m_Value: 22
+    m_Value: 25.105654
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -675,19 +675,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Room Prefabs
+    - Assets/Materials
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs/Room Prefabs
+  - Assets/Materials
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\Blake\Documents\GitHub\NC-Summer-Dev\Working Build
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 71}
-    m_SelectedIDs: a2360000
-    m_LastClickedID: 13986
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 52410000
+    m_LastClickedID: 16722
     m_ExpandedIDs: 00000000fc3300005c3b00002c3c00004c410000444500002a470000fe4d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -743,7 +743,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: b0430100c4420100483b01009a1c00006a23000000000000b04a00009c4c0000243f0000203b00004a350000963d0000183d0000683c0000b6350000a4360000ca340000bc3f0000d8370000b2370000383d0000b439000032300000ee3b000022390000ae330000dc320000643f0000aa6000002a410000663f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -768,7 +768,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 6}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 96
   m_DirectoriesAreaWidth: 415
 --- !u!114 &21

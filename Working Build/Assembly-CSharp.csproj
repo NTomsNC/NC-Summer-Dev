@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\UI\MenuController.cs" />
     <Compile Include="Assets\Scripts\UI\PauseMenuController.cs" />
     <Compile Include="Assets\Scripts\UI\SaveData.cs" />
+    <Compile Include="Assets\VisionBlockedDetector.cs" />
     <None Include="Assets\NavMeshComponents-master\ProjectSettings\ProjectVersion.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Blake/Documents/GitHub/NC-Summer-Dev/Working Build/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

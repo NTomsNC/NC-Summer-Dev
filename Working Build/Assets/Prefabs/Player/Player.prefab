@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1694381952107055579}
   - component: {fileID: 1694381952107055572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1995925558801112185}
   - component: {fileID: 8668390303161787322}
   - component: {fileID: 6948232358603528308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.18
+  m_Radius: 0.2
   m_Height: 0.9
   m_Direction: 1
   m_Center: {x: 0, y: 0.42, z: 0}
@@ -302,7 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1724171687388333429}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4881219147290051497}
   - component: {fileID: 4881219147290051502}
   - component: {fileID: 4881219147290051503}
-  - component: {fileID: 8159342631090747898}
   - component: {fileID: 8240484903638844599}
+  - component: {fileID: 2570150917227653041}
   m_Layer: 0
   m_Name: CameraTracking
   m_TagString: MainCamera
@@ -85,24 +85,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4881219147290051500}
   m_Enabled: 1
---- !u!114 &8159342631090747898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4881219147290051500}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b04ec3bda6b7747aa53936ef3b0ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipMoveTime: 0.05
-  returnTime: 0.4
-  sphereCastRadius: 0.1
-  visualiseInEditor: 0
-  closestDistance: 0.5
-  dontClipTag: Player
 --- !u!114 &8240484903638844599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,3 +98,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceFromPlayer: {x: 0, y: 3.95, z: -1.34}
+--- !u!114 &2570150917227653041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4881219147290051500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7baf2924436919409f9069b538d50fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.01
+  layers:
+    serializedVersion: 2
+    m_Bits: 291
